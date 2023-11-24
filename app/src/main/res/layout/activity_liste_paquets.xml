@@ -14,8 +14,9 @@
         android:layout_marginBottom="1dp"
         android:background="#38D1E4"
         app:layout_constraintBottom_toTopOf="@+id/_dynamic"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="-24dp" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView2"
@@ -27,7 +28,8 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageButton"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="UnknownIdInLayout" />
 
     <ListView
         android:id="@+id/idListeView"
@@ -38,7 +40,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/refresh">
+        app:layout_constraintTop_toBottomOf="@+id/refresh"
+        tools:ignore="UnknownIdInLayout">
 
     </ListView>
 
@@ -52,7 +55,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/titre"
         app:layout_constraintTop_toTopOf="@+id/view5"
-        app:srcCompat="@drawable/icons8_update_left_rotation_30" />
+        app:srcCompat="@drawable/icons8_update_left_rotation_30"
+        tools:ignore="UnknownIdInLayout,SpeakableTextPresentCheck" />
 
     <ImageButton
         android:id="@+id/imageButton4"
@@ -60,13 +64,17 @@
         android:layout_height="55dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
+        android:layout_marginEnd="267dp"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="?attr/homeAsUpIndicator" />
+        app:srcCompat="?attr/homeAsUpIndicator"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <ListView
         android:layout_width="409dp"
         android:layout_height="594dp"
         tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="64dp" />
+        tools:layout_editor_absoluteY="64dp"
+        tools:ignore="MissingConstraints" />
 </androidx.constraintlayout.widget.ConstraintLayout>

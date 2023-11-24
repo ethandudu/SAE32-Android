@@ -176,6 +176,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="86dp"
+        android:contentDescription="@string/bottom_sheet_behavior"
         app:layout_constraintEnd_toEndOf="@+id/TextView"
         app:layout_constraintEnd_toStartOf="@+id/textView4"
         app:layout_constraintHorizontal_bias="0.0"
