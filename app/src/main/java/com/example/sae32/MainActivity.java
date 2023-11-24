@@ -25,6 +25,9 @@ public class MainActivity extends AppCompatActivity {
 
         laListe= findViewById(R.id.idListeView);
         laListe.setOnItemClickListener(this::onItemClick);//onItemClick);
+
+        // send web request to the api
+
     }
 
     public void onItemClick (AdapterView<?> p, View v, int pos, long id){
