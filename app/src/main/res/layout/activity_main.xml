@@ -40,25 +40,24 @@
 
     <ImageButton
         android:id="@+id/refresh"
-        android:layout_width="58dp"
-        android:layout_height="54dp"
-        android:layout_marginTop="7dp"
-        android:layout_marginEnd="23dp"
-        app:layout_constraintBottom_toTopOf="@+id/_dynamic"
+        android:layout_width="52dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="25dp"
+        android:contentDescription="refresh"
+        app:layout_constraintBottom_toTopOf="@+id/idListeView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/titre"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/icons8_update_left_rotation_30"
-        android:contentDescription="refresh"
-        tools:ignore="UnknownIdInLayout" />
+        app:srcCompat="@drawable/icons8_update_left_rotation_30" />
 
     <TextView
         android:id="@+id/titre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="19dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="198dp"
+        android:layout_marginEnd="201dp"
         android:text="SAE 32"
         android:textSize="34sp"
         app:layout_constraintEnd_toStartOf="@+id/refresh"
