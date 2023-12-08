@@ -18,8 +18,8 @@
 
     <View
         android:id="@+id/bandeDeFond"
-        android:layout_width="470dp"
-        android:layout_height="62dp"
+        android:layout_width="469dp"
+        android:layout_height="60dp"
         android:layout_marginTop="1dp"
         android:background="#38D1E4"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,40 +27,42 @@
 
     <ListView
         android:id="@+id/idListeView"
-        android:layout_width="0dp"
+        android:layout_width="407dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="6dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/refresh">
+        app:layout_constraintTop_toBottomOf="@+id/titre">
 
     </ListView>
 
     <ImageButton
         android:id="@+id/refresh"
-        android:layout_width="52dp"
-        android:layout_height="51dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="25dp"
+        android:layout_width="51dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="58dp"
+        android:layout_marginBottom="6dp"
         android:contentDescription="refresh"
         app:layout_constraintBottom_toTopOf="@+id/idListeView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/titre"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/icons8_update_left_rotation_30" />
 
     <TextView
         android:id="@+id/titre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="19dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="201dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="6dp"
         android:text="SAE 32"
         android:textSize="34sp"
-        app:layout_constraintEnd_toStartOf="@+id/refresh"
+        app:layout_constraintBottom_toTopOf="@+id/idListeView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

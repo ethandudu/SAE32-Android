@@ -11,36 +11,38 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
+        android:layout_marginBottom="38dp"
         android:text="TextView"
-        app:layout_constraintBaseline_toBaselineOf="@+id/TextView"
+        app:layout_constraintBottom_toTopOf="@+id/MacSource"
         app:layout_constraintStart_toEndOf="@+id/TextView" />
 
     <TextView
         android:id="@+id/protocolid12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="2dp"
         android:text="TextView"
-        app:layout_constraintStart_toStartOf="@+id/protocolid10"
-        app:layout_constraintTop_toBottomOf="@+id/protocolid10" />
+        app:layout_constraintStart_toStartOf="@+id/protocolid11"
+        app:layout_constraintTop_toTopOf="@+id/macSource6" />
 
     <TextView
         android:id="@+id/protocolid6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
-        android:layout_marginBottom="25dp"
+        android:layout_marginTop="37dp"
         android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/protocolid7"
-        app:layout_constraintStart_toEndOf="@+id/protocolid" />
+        app:layout_constraintStart_toEndOf="@+id/protocolid"
+        app:layout_constraintTop_toBottomOf="@+id/protocolid" />
 
     <TextView
         android:id="@+id/protocolid7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
         android:text="TextView"
-        app:layout_constraintBaseline_toBaselineOf="@+id/macSource"
-        app:layout_constraintStart_toStartOf="@+id/protocolid6" />
+        app:layout_constraintStart_toStartOf="@+id/protocolid6"
+        app:layout_constraintTop_toBottomOf="@+id/protocolid6" />
 
     <TextView
         android:id="@+id/protocolid8"
@@ -55,16 +57,16 @@
         android:id="@+id/protocolid10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="29dp"
+        android:layout_marginBottom="24dp"
         android:text="TextView"
-        app:layout_constraintStart_toStartOf="@+id/protocolid11"
-        app:layout_constraintTop_toBottomOf="@+id/protocolid11" />
+        app:layout_constraintBottom_toTopOf="@+id/protocolid12"
+        app:layout_constraintStart_toStartOf="@+id/protocolid12" />
 
     <TextView
         android:id="@+id/protocolid11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="19dp"
+        android:layout_marginTop="18dp"
         android:text="TextView"
         app:layout_constraintStart_toStartOf="@+id/protocolid9"
         app:layout_constraintTop_toBottomOf="@+id/protocolid9" />
@@ -73,7 +75,7 @@
         android:id="@+id/protocolid9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="29dp"
+        android:layout_marginTop="30dp"
         android:text="TextView"
         app:layout_constraintStart_toStartOf="@+id/protocolid8"
         app:layout_constraintTop_toBottomOf="@+id/protocolid8" />
@@ -81,10 +83,8 @@
     <View
         android:id="@+id/view3"
         android:layout_width="463dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="66dp"
+        android:layout_height="77dp"
         android:background="#38D1E4"
-        app:layout_constraintBottom_toTopOf="@+id/TextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -93,11 +93,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="31dp"
-        android:layout_marginBottom="496dp"
         android:text="Protocole : "
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view3" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/protocolid"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/MacSource"
@@ -114,85 +112,84 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="244dp"
         android:text="MAC Destination : "
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/protocolid7"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/macSource2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="292dp"
+        android:layout_marginBottom="21dp"
         android:text="IP Source : "
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/macSource3"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/macSource3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="332dp"
+        android:layout_marginBottom="4dp"
         android:text="IP Destination : "
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/protocolid9"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/macSource4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="372dp"
+        android:layout_marginTop="21dp"
         android:text="Requête : "
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/macSource3" />
 
     <TextView
         android:id="@+id/macSource5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="420dp"
+        android:layout_marginTop="29dp"
         android:text="Host : "
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/macSource4" />
 
     <TextView
         android:id="@+id/macSource6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="464dp"
+        android:layout_marginTop="25dp"
         android:text="Connexion : "
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/macSource5" />
 
     <ImageButton
         android:id="@+id/imageButton"
-        android:layout_width="0dp"
-        android:layout_height="55dp"
+        android:layout_width="49dp"
+        android:layout_height="56dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="86dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="6dp"
         android:contentDescription="@string/bottom_sheet_behavior"
-        app:layout_constraintEnd_toEndOf="@+id/TextView"
-        app:layout_constraintEnd_toStartOf="@+id/textView4"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintBottom_toBottomOf="@+id/view3"
+        app:layout_constraintEnd_toStartOf="@+id/protocoleName"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view3"
         app:srcCompat="?attr/homeAsUpIndicator" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/protocoleName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="221dp"
-        android:text="n° :"
+        android:layout_marginEnd="224dp"
+        android:layout_marginBottom="11dp"
+        android:text="Protocole :"
         android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageButton"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/imageButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>
