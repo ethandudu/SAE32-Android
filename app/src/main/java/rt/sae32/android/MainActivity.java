@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
 
     private String[] tests;
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +37,8 @@ public class MainActivity extends AppCompatActivity {
         String[] parts = tests[pos].split(" - ");
         String idTest = parts[0];
         Intent intent= new Intent(this, ListePaquets.class);
-        intent.putExtra("id", idTest);
+        intent.putExtra("idtest", idTest);
+        intent.putExtra("testfullname", tests[pos]);
         startActivity(intent);
     }
 
