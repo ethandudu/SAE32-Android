@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">SAE32</string>
+    <string name="testUrl">https://api.sae32.ethanduault.fr/tests.php</string>
+    <string name="packetsUrl">https://api.sae32.ethanduault.fr/packets.php</string>
 </resources>
