@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "rt.sae32.android"
+    namespace = "com.example.sae32"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "rt.sae32.android"
+        applicationId = "com.example.sae32"
         minSdk = 28
         targetSdk = 34
         versionCode = 1
