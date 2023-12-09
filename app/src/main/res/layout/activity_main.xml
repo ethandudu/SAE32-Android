@@ -45,6 +45,7 @@
         android:layout_marginEnd="58dp"
         android:layout_marginBottom="6dp"
         android:contentDescription="refresh"
+        android:onClick="refreshData"
         app:layout_constraintBottom_toTopOf="@+id/idListeView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
