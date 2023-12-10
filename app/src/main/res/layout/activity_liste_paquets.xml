@@ -11,7 +11,6 @@
         android:layout_width="423dp"
         android:layout_height="71dp"
         android:layout_marginStart="2dp"
-        android:layout_marginTop="4dp"
         android:layout_marginEnd="2dp"
         android:layout_marginBottom="1dp"
         android:background="#38D1E4"
@@ -25,12 +24,11 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="101dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="224dp"
         android:text="Test n° :"
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageButton"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="UnknownIdInLayout" />
 
@@ -60,6 +58,15 @@
         app:srcCompat="@drawable/icons8_update_left_rotation_30"
         tools:ignore="UnknownIdInLayout,SpeakableTextPresentCheck" />
 
+    <ListView
+        android:id="@+id/listview"
+        android:layout_width="411dp"
+        android:layout_height="583dp"
+        android:layout_marginTop="74dp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="-1dp" />
+
     <ImageButton
         android:id="@+id/imageButton4"
         android:layout_width="66dp"
@@ -67,17 +74,10 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="267dp"
+        android:onClick="returnToMainActivity"
         app:layout_constraintEnd_toStartOf="@+id/imageButton2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="?attr/homeAsUpIndicator"
         tools:ignore="SpeakableTextPresentCheck" />
-
-    <ListView
-        android:id="@+id/listview"
-        android:layout_width="409dp"
-        android:layout_height="594dp"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="64dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
