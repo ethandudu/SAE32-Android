@@ -3,6 +3,7 @@ package rt.sae32.android;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -26,6 +27,9 @@ public class ListePaquets extends AppCompatActivity {
         getData();
     }
 
+    public void returnToMainActivity(View view){
+        super.finish();
+    }
     private void getData(){
         //prepare the request
         String url = getString(R.string.packetsUrl) + "?fileid=" + getIntent().getStringExtra("idtest");
