@@ -6,80 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ProtocolInfo">
 
-    <TextView
-        android:id="@+id/protocolid"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginBottom="38dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/MacSource"
-        app:layout_constraintStart_toEndOf="@+id/TextView" />
-
-    <TextView
-        android:id="@+id/protocolid12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="@+id/protocolid11"
-        app:layout_constraintTop_toTopOf="@+id/macSource6" />
-
-    <TextView
-        android:id="@+id/protocolid6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="37dp"
-        android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/protocolid"
-        app:layout_constraintTop_toBottomOf="@+id/protocolid" />
-
-    <TextView
-        android:id="@+id/protocolid7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="26dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="@+id/protocolid6"
-        app:layout_constraintTop_toBottomOf="@+id/protocolid6" />
-
-    <TextView
-        android:id="@+id/protocolid8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="@+id/protocolid7"
-        app:layout_constraintTop_toBottomOf="@+id/protocolid7" />
-
-    <TextView
-        android:id="@+id/protocolid10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/protocolid12"
-        app:layout_constraintStart_toStartOf="@+id/protocolid12" />
-
-    <TextView
-        android:id="@+id/protocolid11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="@+id/protocolid9"
-        app:layout_constraintTop_toBottomOf="@+id/protocolid9" />
-
-    <TextView
-        android:id="@+id/protocolid9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="@+id/protocolid8"
-        app:layout_constraintTop_toBottomOf="@+id/protocolid8" />
-
     <View
         android:id="@+id/view3"
         android:layout_width="463dp"
@@ -89,16 +15,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/TextView"
+        android:id="@+id/protocol"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="31dp"
+        android:layout_marginTop="141dp"
         android:text="Protocole : "
-        app:layout_constraintBaseline_toBaselineOf="@+id/protocolid"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/MacSource"
+        android:id="@+id/macSource"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="31dp"
@@ -108,73 +35,47 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/macSource"
+        android:id="@+id/macDest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
+        android:layout_marginTop="244dp"
         android:text="MAC Destination : "
-        app:layout_constraintBaseline_toBaselineOf="@+id/protocolid7"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/macSource2"
+        android:id="@+id/ipSource"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
+        android:layout_marginTop="292dp"
         android:layout_marginBottom="21dp"
         android:text="IP Source : "
-        app:layout_constraintBottom_toTopOf="@+id/macSource3"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/ipDest"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/macSource3"
+        android:id="@+id/ipDest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginTop="333dp"
         android:text="IP Destination : "
-        app:layout_constraintBottom_toBottomOf="@+id/protocolid9"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/macSource4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="21dp"
-        android:text="Requête : "
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/macSource3" />
-
-    <TextView
-        android:id="@+id/macSource5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="29dp"
-        android:text="Host : "
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/macSource4" />
-
-    <TextView
-        android:id="@+id/macSource6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="25dp"
-        android:text="Connexion : "
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/macSource5" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="49dp"
-        android:layout_height="56dp"
+        android:id="@+id/returnButton"
+        android:layout_width="52dp"
+        android:layout_height="51dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="6dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="6dp"
         android:contentDescription="@string/bottom_sheet_behavior"
+        android:onClick="returnToPreviousActivity"
         app:layout_constraintBottom_toBottomOf="@+id/view3"
         app:layout_constraintEnd_toStartOf="@+id/protocoleName"
         app:layout_constraintStart_toStartOf="parent"
@@ -189,7 +90,8 @@
         android:layout_marginBottom="11dp"
         android:text="Protocole :"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageButton"
+        app:layout_constraintBottom_toBottomOf="@+id/returnButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageButton" />
+        app:layout_constraintStart_toEndOf="@+id/returnButton" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
