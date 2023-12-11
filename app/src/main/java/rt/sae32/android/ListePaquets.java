@@ -2,8 +2,10 @@ package rt.sae32.android;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -13,7 +15,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
+import java.util.concurrent.Future;
+
 
 public class ListePaquets extends AppCompatActivity {
 
@@ -23,22 +26,35 @@ public class ListePaquets extends AppCompatActivity {
         setContentView(R.layout.activity_liste_paquets);
 
         TextView testName = findViewById(R.id.textView2);
-        testName.setText(String.format("Test n°%s", getIntent().getStringExtra("testfullname")));
+        testName.setText(String.format("Test n°%s", getIntent().getStringExtra("testFullname")));
         getData();
+
+        ListView laListe = findViewById(R.id.listview);
+        laListe.setOnItemClickListener(this::onItemClick);
+    }
+
+    public void onItemClick (AdapterView<?> p, View v, int pos, long id){
+        //parsing the string to get the id of the test
+        String[] parts = p.getItemAtPosition(pos).toString().split(" - ");
+        String idPacket = parts[0];
+        Intent intent = new Intent(this, ProtocolInfo.class);
+        intent.putExtra("idPacket", idPacket);
+        intent.putExtra("idTest", getIntent().getStringExtra("idTest"));
+        startActivity(intent);
     }
 
     public void returnToMainActivity(View view){
         super.finish();
     }
+
     private void getData(){
         //prepare the request
-        String url = getString(R.string.packetsUrl) + "?fileid=" + getIntent().getStringExtra("idtest");
-        System.out.println(url);
-        HttpRequest request = new HttpRequest();
+        String url = getString(R.string.packetsUrl) + "?fileid=" + getIntent().getStringExtra("idTest");
+        Future<String> request = HttpRequest.execute(url,"GET");
         String response = "";
 
         try {
-            response = request.execute(url, "GET").get();
+            response = request.get();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -48,7 +64,11 @@ public class ListePaquets extends AppCompatActivity {
             return;
         }
 
-        ArrayList<String> items = new ArrayList<>();
+        readResponse(response);
+
+    }
+
+    private void readResponse(String response){
         ArrayAdapter<String> adapter;
 
         try {
@@ -60,7 +80,6 @@ public class ListePaquets extends AppCompatActivity {
                 JSONObject item = array.getJSONObject(i);
                 String id = item.getString("ID");
                 String protocols = item.getString("protocols");
-                System.out.println(id + " - " + protocols);
                 packets[i] = id + " - " + protocols;
             }
 
@@ -70,6 +89,7 @@ public class ListePaquets extends AppCompatActivity {
             laListe.setAdapter(adapter);
 
         } catch (JSONException e) {
+            Toast.makeText(this, "Une erreur est survenue ...", Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
     }

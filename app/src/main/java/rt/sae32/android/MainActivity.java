@@ -36,8 +36,8 @@ public class MainActivity extends AppCompatActivity {
         String[] parts = tests[pos].split(" - ");
         String idTest = parts[0];
         Intent intent= new Intent(this, ListePaquets.class);
-        intent.putExtra("idtest", idTest);
-        intent.putExtra("testfullname", tests[pos]);
+        intent.putExtra("idTest", idTest);
+        intent.putExtra("testFullname", tests[pos]);
         startActivity(intent);
     }
 
@@ -50,11 +50,11 @@ public class MainActivity extends AppCompatActivity {
 
         //prepare the request
         String url = getString(R.string.testUrl);
-        HttpRequest request = new HttpRequest();
+        Future<String> request = HttpRequest.execute(url,"GET");
         String response = "";
 
         try {
-            response = request.execute(url, "GET").get();
+            response = request.get();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -64,9 +64,11 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        ArrayList<String> items = new ArrayList<>();
-        ArrayAdapter<String> adapter;
+        readResponse(response);
+    }
 
+    private void readResponse(String response) {
+        ArrayAdapter<String> adapter;
         try {
             //read the json
             JSONObject json = new JSONObject(response);
@@ -78,13 +80,12 @@ public class MainActivity extends AppCompatActivity {
                 String name = item.getString("name");
                 tests[i] = id + " - " + name;
             }
-
             //add the data to the list and display it
             adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, tests);
             ListView laListe = findViewById(R.id.idListeView);
             laListe.setAdapter(adapter);
-
-        } catch (JSONException e) {
+        } catch (JSONException e){
+            Toast.makeText(this, "Une erreur est survenue ...", Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
     }
