@@ -1,23 +1,30 @@
 package rt.sae32.android;
 
-import android.os.AsyncTask;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 /**
  * Do a HTTP request to the server, and return the response.
  * Takes as parameter the url and the method
  */
-public class HttpRequest extends AsyncTask<String, Void, String> {
+public class HttpRequest implements Callable<String> {
+    private final String url;
+    private final String method;
+
+    public HttpRequest(String url, String method) {
+        this.url = url;
+        this.method = method;
+    }
+
     @Override
-    protected String doInBackground(String ... params){
-        String url = params[0];
-        String method = params[1];
+    public String call() {
         String response = "";
         try {
             URL obj = new URL(url);
@@ -41,12 +48,17 @@ public class HttpRequest extends AsyncTask<String, Void, String> {
                 response = "Error: " + responseCode;
             }
 
-
-
         } catch (IOException e) {
             e.printStackTrace();
             response = "Error: " + e.getMessage();
         }
         return response;
+    }
+
+    public static Future<String> execute(String url, String method) {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Future<String> future = executor.submit(new HttpRequest(url, method));
+        executor.shutdown(); // it is very important to shutdown your non-singleton ExecutorService.
+        return future;
     }
 }
