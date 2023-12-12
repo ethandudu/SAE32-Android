@@ -3,4 +3,9 @@
     <string name="testUrl">https://api.sae32.ethanduault.fr/tests.php</string>
     <string name="packetsUrl">https://api.sae32.ethanduault.fr/packets.php</string>
     <string name="refresh">refresh</string>
+    <string name="protocols">"Protocoles : "</string>
+    <string name="mac_src">"MAC Src : "</string>
+    <string name="mac_dest">"MAC Dest : "</string>
+    <string name="ip_src">"IP Src : "</string>
+    <string name="ip_dest">"IP Dest : "</string>
 </resources>
