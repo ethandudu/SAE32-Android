@@ -21,6 +21,8 @@ public class ProtocolInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_protocol_info);
         getData();
+        TextView editText = findViewById(R.id.editTextTextMultiLine);
+        editText.setEnabled(false);
     }
 
     public void returnToPreviousActivity(View view){
