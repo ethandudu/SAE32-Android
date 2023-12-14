@@ -60,7 +60,6 @@ public class PacketDetails extends AppCompatActivity {
 
 
             StringBuilder protocolString = new StringBuilder();
-            System.out.println(array.getJSONObject(0).getString("protocols"));
             JSONArray protocols = new JSONArray(array.getJSONObject(0).getString("protocols"));
             boolean isIP = false;
             for (int i = 0; i < protocols.length(); i++) {
