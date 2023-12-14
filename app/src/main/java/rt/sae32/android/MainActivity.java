@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         //parsing the string to get the id of the test
         String[] parts = tests[pos].split(" - ");
         String idTest = parts[0];
-        Intent intent= new Intent(this, ListePaquets.class);
+        Intent intent= new Intent(this, PacketsList.class);
         intent.putExtra("idTest", idTest);
         intent.putExtra("testFullname", tests[pos]);
         startActivity(intent);

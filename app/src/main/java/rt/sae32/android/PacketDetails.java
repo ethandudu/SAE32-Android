@@ -14,12 +14,12 @@ import org.json.JSONObject;
 import java.text.MessageFormat;
 import java.util.concurrent.Future;
 
-public class ProtocolInfo extends AppCompatActivity {
+public class PacketDetails extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_protocol_info);
+        setContentView(R.layout.activity_packetdetails);
         getData();
         TextView editText = findViewById(R.id.editTextTextMultiLine);
         editText.setEnabled(false);

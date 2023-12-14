@@ -18,12 +18,12 @@ import org.json.JSONObject;
 import java.util.concurrent.Future;
 
 
-public class ListePaquets extends AppCompatActivity {
+public class PacketsList extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_liste_paquets);
+        setContentView(R.layout.activity_packetslist);
 
         TextView testName = findViewById(R.id.textView2);
         testName.setText(String.format("Test n°%s", getIntent().getStringExtra("testFullname")));
@@ -37,7 +37,7 @@ public class ListePaquets extends AppCompatActivity {
         //parsing the string to get the id of the test
         String[] parts = p.getItemAtPosition(pos).toString().split(" - ");
         String idPacket = parts[0];
-        Intent intent = new Intent(this, ProtocolInfo.class);
+        Intent intent = new Intent(this, PacketDetails.class);
         intent.putExtra("idPacket", idPacket);
         intent.putExtra("idTest", getIntent().getStringExtra("idTest"));
         startActivity(intent);
