@@ -1,13 +1,18 @@
 package rt.sae32.android;
 
+import static android.app.usage.UsageEvents.Event.NONE;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
 import android.content.Intent;
+import android.view.ContextMenu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -15,6 +20,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONException;
 
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 public class MainActivity extends AppCompatActivity {
@@ -25,10 +31,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         ListView laListe = findViewById(R.id.idListeView);
         laListe.setOnItemClickListener(this::onItemClick);
         refreshData(findViewById(R.id.refresh));
+        registerForContextMenu(laListe);
     }
 
     public void onItemClick (AdapterView<?> p, View v, int pos, long id){
@@ -89,4 +95,44 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+    public void onCreateContextMenu(ContextMenu m, View v, ContextMenu.ContextMenuInfo i) {
+        super.onCreateContextMenu(m, v, i);
+        m.setHeaderTitle("Options");
+        m.add(NONE, v.getId(), 1, "Modifier");
+        m.add(NONE, v.getId(), 2, "Supprimer");
+    }
+
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        if (item.getTitle()=="Modifier"){
+            Toast.makeText(getApplicationContext(),"Modifier",Toast.LENGTH_LONG).show();
+        }
+        else if (item.getTitle()=="Supprimer") {
+            //request to delete the test
+            String[] parts = tests[info.position].split(" - ");
+            String idTest = parts[0];
+            String url = getString(R.string.deleteTestUrl) + "?fileid=" + idTest;
+            Future<String> request = HttpRequest.execute(url,"GET");
+            String response = "";
+            try {
+                response = request.get();
+                //read the json
+                JSONObject json = new JSONObject(response);
+                String status = json.getString("responsecode");
+                if (status.equals("200")) {
+                    Toast.makeText(getApplicationContext(),"Suppression réussie",Toast.LENGTH_LONG).show();
+                    refreshData(findViewById(R.id.refresh));
+                } else {
+                    Toast.makeText(getApplicationContext(),"Erreur lors de la suppression",Toast.LENGTH_LONG).show();
+                }
+            } catch (ExecutionException | InterruptedException | JSONException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            return false;
+        }
+        return false;
+    }
+
 }
