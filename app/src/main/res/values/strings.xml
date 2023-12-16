@@ -10,4 +10,5 @@
     <string name="mac_dest">"MAC Dest : "</string>
     <string name="ip_src">"IP Src : "</string>
     <string name="ip_dest">"IP Dest : "</string>
+    <string name="settings">Paramètres</string>
 </resources>
