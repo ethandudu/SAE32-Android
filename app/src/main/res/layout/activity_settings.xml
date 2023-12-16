@@ -66,4 +66,20 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <EditText
+        android:id="@+id/serverUrl"
+        android:layout_width="373dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="188dp"
+        android:layout_marginEnd="21dp"
+        android:autofillHints="@string/serverUrlHint"
+        android:ems="10"
+        android:inputType="text|textUri"
+        android:labelFor="@+id/serverUrl"
+        android:text="@string/serverUrlHint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

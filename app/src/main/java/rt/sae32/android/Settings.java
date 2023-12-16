@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
@@ -20,6 +21,9 @@ public class Settings extends AppCompatActivity {
             SwitchMaterial macResolution = findViewById(R.id.macresolution);
             macResolution.setChecked(true);
         }
+        EditText serverUrl = findViewById(R.id.serverUrl);
+        serverUrl.setText(sharedPreferences.getString("serverUrl", ""));
+
     }
     public void returnToMainActivity(View view){
         super.finish();
@@ -30,9 +34,9 @@ public class Settings extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean("macResolution", macResolution.isChecked());
+        EditText serverUrl = findViewById(R.id.serverUrl);
+        editor.putString("serverUrl", serverUrl.getText().toString());
         editor.apply();
-        System.out.println("macResolutionSwitch : " + macResolution.isChecked());
-        System.out.println("macResolution : " + sharedPreferences.getBoolean("macResolution", false));
         super.finish();
     }
 }
