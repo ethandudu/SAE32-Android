@@ -4,6 +4,7 @@ import static android.app.usage.UsageEvents.Event.NONE;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import android.content.Intent;
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ListView laListe = findViewById(R.id.idListeView);
         laListe.setOnItemClickListener(this::onItemClick);
+        checkSettings();
         refreshData(findViewById(R.id.refresh));
         registerForContextMenu(laListe);
     }
@@ -138,4 +140,17 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
+    private void checkSettings() {
+        SharedPreferences sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
+        if (sharedPreferences.getBoolean("macResolution", false)){
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean("macResolution", false);
+            editor.apply();
+        }
+        if (sharedPreferences.getString("serverUrl", "").equals("")) {
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("serverUrl", "https://api.sae32.ethanduault.fr");
+            editor.apply();
+        }
+    }
 }
