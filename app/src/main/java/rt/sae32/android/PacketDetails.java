@@ -21,6 +21,8 @@ public class PacketDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_packetdetails);
         getData();
+        TextView paquetName = findViewById(R.id.packet);
+        paquetName.setText(String.format("Paquet n°%s", getIntent().getStringExtra("idPacket")));
         TextView editText = findViewById(R.id.editTextTextMultiLine);
         editText.setEnabled(false);
     }
