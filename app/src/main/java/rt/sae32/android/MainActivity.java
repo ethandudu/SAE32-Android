@@ -12,7 +12,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -37,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         registerForContextMenu(laListe);
     }
 
-    public void onItemClick (AdapterView<?> p, View v, int pos, long id){
+    private void onItemClick (AdapterView<?> p, View v, int pos, long id){
         //parsing the string to get the id of the test
         String[] parts = tests[pos].split(" - ");
         String idTest = parts[0];
@@ -48,6 +47,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public void openSettings(View v){
+        Intent intent = new Intent(this, Settings.class);
+        startActivity(intent);
+    }
     /**
      * @param view the view that called the method
      */
