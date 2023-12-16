@@ -78,7 +78,7 @@ public class PacketsList extends AppCompatActivity {
             String[] packets = new String[array.length()];
             for (int i = 0; i < array.length(); i++) {
                 JSONObject item = array.getJSONObject(i);
-                String id = item.getString("ID");
+                String id = item.getString("packetid");
                 StringBuilder protocolString = new StringBuilder();
                 JSONArray protocols = new JSONArray(array.getJSONObject(0).getString("protocols"));
                 for (int i2 = 0; i2 < protocols.length(); i2++) {
