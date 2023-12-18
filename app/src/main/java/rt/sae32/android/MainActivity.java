@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
             String idTest = parts[0];
             String url = getString(R.string.deleteTestUrl) + "?fileid=" + idTest;
             Future<String> request = HttpRequest.execute(url,"GET");
-            String response = "";
+            String response;
             try {
                 response = request.get();
                 //read the json
