@@ -115,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else if (item.getTitle()=="Supprimer") {
             //request to delete the test
+            assert info != null;
             String[] parts = tests[info.position].split(" - ");
             String idTest = parts[0];
             String url = getString(R.string.deleteTestUrl) + "?fileid=" + idTest;
