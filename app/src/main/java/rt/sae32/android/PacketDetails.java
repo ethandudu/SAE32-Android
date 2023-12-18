@@ -12,11 +12,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
 import java.text.MessageFormat;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.Future;
@@ -135,7 +131,7 @@ public class PacketDetails extends AppCompatActivity {
         //prepare the request
         String url = getString(R.string.macVendorUrl) + "?macsrc=" + macsrc + "&macdst=" + macdst;
         Future<String> request = HttpRequest.execute(url,"GET");
-        String response = "";
+        String response;
         try {
             response = request.get();
             if (response.startsWith("Error")) {
