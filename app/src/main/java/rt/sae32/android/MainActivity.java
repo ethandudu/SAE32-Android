@@ -143,17 +143,13 @@ public class MainActivity extends AppCompatActivity {
     private void checkSettings() {
         SharedPreferences sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
         //check if the settings are set
-        if (sharedPreferences.getBoolean("macResolution", false)){
+        if (!sharedPreferences.contains("macResolution")) {
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putBoolean("macResolution", false);
             editor.apply();
         }
-        if (sharedPreferences.getBoolean("ouiDownloaded", false)){
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putBoolean("ouiDownloaded", false);
-            editor.apply();
-        }
-        if (sharedPreferences.getString("serverUrl", "").equals("")) {
+
+        if (!sharedPreferences.contains("serverUrl")) {
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString("serverUrl", "https://api.sae32.ethanduault.fr");
             editor.apply();
