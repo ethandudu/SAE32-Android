@@ -50,7 +50,6 @@
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="116dp"
-        android:onClick="macSwitchChange"
         android:text="@string/macvendorresolution"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

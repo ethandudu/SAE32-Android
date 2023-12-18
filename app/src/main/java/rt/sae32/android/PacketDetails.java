@@ -87,17 +87,15 @@ public class PacketDetails extends AppCompatActivity {
                 String macdsthex = array.getJSONObject(0).getString("macdst");
                 macdsthex = macdsthex.replace(":", "");
                 macdsthex = macdsthex.substring(0, 6);
-                System.out.println(macsrchex);
-                System.out.println(macdsthex);
 
                 Map<String, String> values = macVendorResolution(macsrchex, macdsthex);
 
-                if (Objects.equals(values.get("vendorsrc"), "null")){
+                if (Objects.equals(values.get("vendorsrc"), "Unknown")){
                     macsrc.setText(MessageFormat.format("{0}{1}", getString(R.string.mac_src), array.getJSONObject(0).getString("macsrc")));
                 } else {
                     macsrc.setText(MessageFormat.format("{0}{1} ({2})", getString(R.string.mac_src), array.getJSONObject(0).getString("macsrc"), values.get("vendorsrc")));
                 }
-                if (Objects.equals(values.get("vendordst"), "null")){
+                if (Objects.equals(values.get("vendordst"), "Unknown")){
                     macdst.setText(MessageFormat.format("{0}{1}", getString(R.string.mac_dest), array.getJSONObject(0).getString("macdst")));
                 } else {
                     macdst.setText(MessageFormat.format("{0}{1} ({2})", getString(R.string.mac_dest), array.getJSONObject(0).getString("macdst"), values.get("vendordst")));
@@ -130,33 +128,25 @@ public class PacketDetails extends AppCompatActivity {
         return sharedPreferences.getBoolean("macResolution", false);
     }
     private Map<String, String> macVendorResolution(String macsrc, String macdst){
-        //read the oui json file from the internal storage
         macsrc = macsrc.toUpperCase();
         macdst = macdst.toUpperCase();
-        String vendorsrc = "null";
-        String vendordst = "null";
+        String vendorsrc = "Unknown";
+        String vendordst = "Unknown";
+        //prepare the request
+        String url = getString(R.string.macVendorUrl) + "?macsrc=" + macsrc + "&macdst=" + macdst;
+        Future<String> request = HttpRequest.execute(url,"GET");
+        String response = "";
         try {
-            FileInputStream fis = openFileInput("oui.json");
-            InputStreamReader isr = new InputStreamReader(fis);
-            BufferedReader br = new BufferedReader(isr);
-            StringBuilder sb = new StringBuilder();
-            String line;
-            while ((line = br.readLine()) != null) {
-                sb.append(line).append("\n");
+            response = request.get();
+            if (response.startsWith("Error")) {
+                Toast.makeText(this, response, Toast.LENGTH_SHORT).show();
+                return Map.of("vendorsrc", vendorsrc, "vendordst", vendordst);
             }
-            br.close();
-            isr.close();
-            fis.close();
+            JSONObject json = new JSONObject(response);
+            JSONObject object = json.getJSONObject("data");
+            vendorsrc = object.getString("vendorsrc");
+            vendordst = object.getString("vendordst");
 
-            String json = sb.toString();
-            JSONArray array = new JSONArray(json);
-            Map<String, String> macToVendorMap = new HashMap<>();
-            for (int i = 0; i < array.length(); i++) {
-                JSONObject object = array.getJSONObject(i);
-                macToVendorMap.put(object.getString("Assignment"), object.getString("Organization Name"));
-            }
-            vendorsrc = macToVendorMap.getOrDefault(macsrc, "null");
-            vendordst = macToVendorMap.getOrDefault(macdst, "null");
         } catch (Exception e) {
             e.printStackTrace();
         }
