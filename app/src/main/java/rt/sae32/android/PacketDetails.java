@@ -36,7 +36,8 @@ public class PacketDetails extends AppCompatActivity {
 
     public void getData() {
         //prepare the request
-        String url = getString(R.string.packetsUrl) + "?fileid=" + getIntent().getStringExtra("idTest") + "&packetid=" + getIntent().getStringExtra("idPacket");
+        String server = ServerUrl.getServerUrl(this);
+        String url = server + getString(R.string.packetsUrl) + "?fileid=" + getIntent().getStringExtra("idTest") + "&packetid=" + getIntent().getStringExtra("idPacket");
         Future<String> request = HttpRequest.execute(url,"GET");
         String response = "";
 
@@ -129,7 +130,8 @@ public class PacketDetails extends AppCompatActivity {
         String vendorsrc = "Unknown";
         String vendordst = "Unknown";
         //prepare the request
-        String url = getString(R.string.macVendorUrl) + "?macsrc=" + macsrc + "&macdst=" + macdst;
+        String server = ServerUrl.getServerUrl(this);
+        String url = server + getString(R.string.macVendorUrl) + "?macsrc=" + macsrc + "&macdst=" + macdst;
         Future<String> request = HttpRequest.execute(url,"GET");
         String response;
         try {
