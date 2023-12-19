@@ -68,29 +68,24 @@
         android:id="@+id/returnButton"
         android:layout_width="52dp"
         android:layout_height="51dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="6dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="6dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="13dp"
         android:contentDescription="@string/bottom_sheet_behavior"
         android:onClick="returnToPreviousActivity"
-        app:layout_constraintBottom_toBottomOf="@+id/view3"
-        app:layout_constraintEnd_toStartOf="@+id/packet"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view3"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="?attr/homeAsUpIndicator" />
 
     <TextView
         android:id="@+id/packet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="224dp"
-        android:layout_marginBottom="11dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="20dp"
         android:text="Paquet :"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/returnButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/returnButton" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editTextTextMultiLine"
