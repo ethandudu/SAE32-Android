@@ -4,6 +4,7 @@ import static android.app.usage.UsageEvents.Event.NONE;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import android.content.Intent;
@@ -12,7 +13,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -33,11 +33,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ListView laListe = findViewById(R.id.idListeView);
         laListe.setOnItemClickListener(this::onItemClick);
+        checkSettings();
         refreshData(findViewById(R.id.refresh));
         registerForContextMenu(laListe);
     }
 
-    public void onItemClick (AdapterView<?> p, View v, int pos, long id){
+    private void onItemClick (AdapterView<?> p, View v, int pos, long id){
         //parsing the string to get the id of the test
         String[] parts = tests[pos].split(" - ");
         String idTest = parts[0];
@@ -48,6 +49,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public void openSettings(View v){
+        Intent intent = new Intent(this, Settings.class);
+        startActivity(intent);
+    }
     /**
      * @param view the view that called the method
      */
@@ -110,11 +115,12 @@ public class MainActivity extends AppCompatActivity {
         }
         else if (item.getTitle()=="Supprimer") {
             //request to delete the test
+            assert info != null;
             String[] parts = tests[info.position].split(" - ");
             String idTest = parts[0];
             String url = getString(R.string.deleteTestUrl) + "?fileid=" + idTest;
             Future<String> request = HttpRequest.execute(url,"GET");
-            String response = "";
+            String response;
             try {
                 response = request.get();
                 //read the json
@@ -135,4 +141,19 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
+    private void checkSettings() {
+        SharedPreferences sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
+        //check if the settings are set
+        if (!sharedPreferences.contains("macResolution")) {
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean("macResolution", false);
+            editor.apply();
+        }
+
+        if (!sharedPreferences.contains("serverUrl")) {
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("serverUrl", "https://api.sae32.ethanduault.fr");
+            editor.apply();
+        }
+    }
 }
