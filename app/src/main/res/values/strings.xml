@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">SAE32</string>
     <string name="empty">""</string>
-    <string name="testUrl">https://api.sae32.ethanduault.fr/tests.php</string>
-    <string name="packetsUrl">https://api.sae32.ethanduault.fr/packets.php</string>
-    <string name="deleteTestUrl">https://api.sae32.ethanduault.fr/delete.php</string>
-    <string name="macVendorUrl">https://api.sae32.ethanduault.fr/mac.php</string>
+    <string name="testUrl">/tests.php</string>
+    <string name="packetsUrl">/packets.php</string>
+    <string name="deleteTestUrl">/delete.php</string>
+    <string name="macVendorUrl">/mac.php</string>
     <string name="refresh">refresh</string>
     <string name="protocols">"Protocoles : "</string>
     <string name="mac_src">"MAC Src : "</string>
