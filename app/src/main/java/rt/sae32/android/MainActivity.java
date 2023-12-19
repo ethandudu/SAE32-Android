@@ -58,9 +58,9 @@ public class MainActivity extends AppCompatActivity {
      */
     public void refreshData(View view) {
         Toast.makeText(this, "Actualisation ...", Toast.LENGTH_SHORT).show();
-
+        String server = ServerUrl.getServerUrl(this);
         //prepare the request
-        String url = getString(R.string.testUrl);
+        String url = server + "/tests.php";
         Future<String> request = HttpRequest.execute(url,"GET");
         String response = "";
 

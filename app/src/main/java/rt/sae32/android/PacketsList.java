@@ -48,8 +48,9 @@ public class PacketsList extends AppCompatActivity {
     }
 
     private void getData(){
+        String server = ServerUrl.getServerUrl(this);
         //prepare the request
-        String url = getString(R.string.packetsUrl) + "?fileid=" + getIntent().getStringExtra("idTest");
+        String url = server + getString(R.string.packetsUrl) + "?fileid=" + getIntent().getStringExtra("idTest");
         Future<String> request = HttpRequest.execute(url,"GET");
         String response = "";
 
