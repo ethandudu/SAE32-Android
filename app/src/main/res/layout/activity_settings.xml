@@ -10,7 +10,7 @@
         android:id="@+id/view3"
         android:layout_width="463dp"
         android:layout_height="77dp"
-        android:background="#38D1E4"
+        android:background="?attr/actionModeSplitBackground"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,13 +23,15 @@
         android:layout_marginTop="6dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="6dp"
+        android:backgroundTint="#00FFFFFF"
         android:contentDescription="@string/bottom_sheet_behavior"
         android:onClick="returnToMainActivity"
         app:layout_constraintBottom_toBottomOf="@+id/view3"
         app:layout_constraintEnd_toStartOf="@+id/packet"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/view3"
-        app:srcCompat="?attr/homeAsUpIndicator" />
+        app:srcCompat="?attr/homeAsUpIndicator"
+        app:tint="@color/main_50" />
 
 
     <TextView
@@ -39,6 +41,7 @@
         android:layout_marginEnd="224dp"
         android:layout_marginBottom="11dp"
         android:text="@string/settings"
+        android:textColor="@color/main_50"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/returnButton"
         app:layout_constraintEnd_toEndOf="parent"
@@ -52,7 +55,9 @@
         android:layout_marginTop="116dp"
         android:text="@string/macvendorresolution"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:thumbTint="?attr/colorTertiary"
+        app:trackTint="@color/secondary_600" />
 
     <Button
         android:id="@+id/save"
