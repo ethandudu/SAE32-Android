@@ -2,6 +2,8 @@ package rt.sae32.android;
 
 import static android.app.usage.UsageEvents.Event.NONE;
 
+import static com.google.android.gms.tasks.Tasks.await;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.SharedPreferences;
@@ -34,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         ListView laListe = findViewById(R.id.idListeView);
         laListe.setOnItemClickListener(this::onItemClick);
         checkSettings();
-        refreshData(findViewById(R.id.refresh));
+        refreshData(findViewById(R.id.refresh), true);
         registerForContextMenu(laListe);
     }
 
@@ -56,8 +58,10 @@ public class MainActivity extends AppCompatActivity {
     /**
      * @param view the view that called the method
      */
-    public void refreshData(View view) {
-        Toast.makeText(this, "Actualisation ...", Toast.LENGTH_SHORT).show();
+    public void refreshData(View view, Boolean init) {
+        if (!init) {
+            Toast.makeText(this, "Actualisation ...", Toast.LENGTH_SHORT).show();
+        }
         String server = ServerUrl.getServerUrl(this);
         //prepare the request
         String url = server + "/tests.php";
@@ -128,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
                 String status = json.getString("responsecode");
                 if (status.equals("200")) {
                     Toast.makeText(getApplicationContext(),"Suppression réussie",Toast.LENGTH_LONG).show();
-                    refreshData(findViewById(R.id.refresh));
+                    refreshData(findViewById(R.id.refresh),false);
                 } else {
                     Toast.makeText(getApplicationContext(),"Erreur lors de la suppression",Toast.LENGTH_LONG).show();
                 }
@@ -143,17 +147,15 @@ public class MainActivity extends AppCompatActivity {
 
     private void checkSettings() {
         SharedPreferences sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
-        //check if the settings are set
-        if (!sharedPreferences.contains("macResolution")) {
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putBoolean("macResolution", false);
-            editor.apply();
+        if (!sharedPreferences.contains("firstStart")) {
+            Intent intent = new Intent(this, FirstStart.class);
+            startActivity(intent);
+            finish();
         }
 
-        if (!sharedPreferences.contains("serverUrl")) {
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString("serverUrl", "https://api.sae32.ethanduault.fr");
-            editor.apply();
-        }
+    }
+
+    public void refreshData(View view) {
+        refreshData(view, false);
     }
 }
