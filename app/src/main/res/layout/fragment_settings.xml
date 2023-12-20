@@ -15,7 +15,9 @@
         android:layout_marginTop="328dp"
         android:text="@string/macvendorresolution"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:thumbTint="?attr/colorTertiary"
+        app:trackTint="@color/secondary_600" />
 
     <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/darktheme"
@@ -25,7 +27,9 @@
         android:layout_marginTop="416dp"
         android:text="Thème sombre"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:thumbTint="?attr/colorTertiary"
+        app:trackTint="@color/secondary_600" />
 
     <TextView
         android:id="@+id/textView"
@@ -50,6 +54,7 @@
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
