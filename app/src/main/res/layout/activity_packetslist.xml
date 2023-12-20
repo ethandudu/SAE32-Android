@@ -30,13 +30,12 @@
 
     <ListView
         android:id="@+id/listview"
-        android:layout_width="407dp"
-        android:layout_height="683dp"
+        android:layout_width="417dp"
+        android:layout_height="0dp"
 
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view5"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toStartOf="@id/view5"
+        app:layout_constraintTop_toBottomOf="@+id/view5" />
 
     <ImageButton
         android:id="@+id/imageButton4"
