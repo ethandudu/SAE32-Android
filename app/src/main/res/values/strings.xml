@@ -15,4 +15,11 @@
     <string name="macvendorresolution">Résolution du constructeur de l\'adresse MAC</string>
     <string name="save">Sauvegarder</string>
     <string name="serverUrlHint">URL du serveur</string>
+    <string name="suivant">Suivant</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="startup_text">Bienvenue dans l\'application SAE32 ! \nIl semblerait que c\'est votre première fois par ici, laissez vous guider par les étapes suivantes.\n Vous êtes à deux doigts de pouvoir utiliser l\'application</string>
+    <string name="https_domain_com">https://domain.com</string>
+    <string name="pr_c_dent">Précédent</string>
+    <string name="param_tres">Paramètres</string>
 </resources>
