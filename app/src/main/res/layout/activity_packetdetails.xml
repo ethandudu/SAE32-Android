@@ -7,10 +7,11 @@
     tools:context=".PacketDetails">
 
     <View
-        android:id="@+id/view3"
-        android:layout_width="463dp"
-        android:layout_height="77dp"
+        android:id="@+id/header"
+        android:layout_width="0dp"
+        android:layout_height="59dp"
         android:background="?attr/actionModeSplitBackground"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -68,8 +69,8 @@
         android:id="@+id/returnButton"
         android:layout_width="52dp"
         android:layout_height="51dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="13dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="6dp"
         android:backgroundTint="#00FFFFFF"
         android:contentDescription="@string/bottom_sheet_behavior"
         android:onClick="returnToPreviousActivity"
@@ -82,8 +83,8 @@
         android:id="@+id/packet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="92dp"
-        android:layout_marginTop="23dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="14dp"
         android:text="Paquet :"
         android:textColor="@color/main_50"
         android:textSize="24sp"
