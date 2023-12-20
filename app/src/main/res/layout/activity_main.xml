@@ -18,9 +18,10 @@
 
     <View
         android:id="@+id/bandeDeFond"
-        android:layout_width="469dp"
-        android:layout_height="60dp"
-        android:background="#38D1E4"
+        android:layout_width="497dp"
+        android:layout_height="59dp"
+
+        android:background="?attr/actionModeSplitBackground"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -30,11 +31,13 @@
         android:layout_height="51dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="28dp"
+        android:backgroundTint="#00FFFFFF"
         android:contentDescription="@string/settings"
         android:onClick="openSettings"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/icons8_settings_30" />
+        app:srcCompat="@drawable/icons8_settings_30"
+        app:tint="@color/main_50" />
 
     <ListView
         android:id="@+id/idListeView"
@@ -54,11 +57,13 @@
         android:layout_height="51dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="92dp"
+        android:backgroundTint="#00FFFFFF"
         android:contentDescription="@string/refresh"
         android:onClick="refreshData"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/icons8_update_left_rotation_30" />
+        app:srcCompat="@drawable/icons8_update_left_rotation_30"
+        app:tint="@color/main_50" />
 
     <TextView
         android:id="@+id/titre"
@@ -67,6 +72,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="5dp"
         android:text="@string/app_name"
+        android:textColor="@color/main_50"
         android:textSize="34sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

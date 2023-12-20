@@ -10,7 +10,7 @@
         android:id="@+id/view3"
         android:layout_width="463dp"
         android:layout_height="77dp"
-        android:background="#38D1E4"
+        android:background="?attr/actionModeSplitBackground"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -70,11 +70,13 @@
         android:layout_height="51dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="13dp"
+        android:backgroundTint="#00FFFFFF"
         android:contentDescription="@string/bottom_sheet_behavior"
         android:onClick="returnToPreviousActivity"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="?attr/homeAsUpIndicator" />
+        app:srcCompat="?attr/homeAsUpIndicator"
+        app:tint="@color/main_50" />
 
     <TextView
         android:id="@+id/packet"
@@ -83,6 +85,7 @@
         android:layout_marginStart="92dp"
         android:layout_marginTop="23dp"
         android:text="Paquet :"
+        android:textColor="@color/main_50"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
