@@ -37,8 +37,10 @@ public class PacketDetails extends AppCompatActivity {
     public void getData() {
         //prepare the request
         String server = ServerUrl.getServerUrl(this);
+        SharedPreferences sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
+        String token = sharedPreferences.getString("authorizedToken", "");
         String url = server + getString(R.string.packetsUrl) + "?fileid=" + getIntent().getStringExtra("idTest") + "&packetid=" + getIntent().getStringExtra("idPacket");
-        Future<String> request = HttpRequest.execute(url,"GET");
+        Future<String> request = HttpRequest.execute(url,"GET", token);
         String response = "";
 
         try {
@@ -132,7 +134,9 @@ public class PacketDetails extends AppCompatActivity {
         //prepare the request
         String server = ServerUrl.getServerUrl(this);
         String url = server + getString(R.string.macVendorUrl) + "?macsrc=" + macsrc + "&macdst=" + macdst;
-        Future<String> request = HttpRequest.execute(url,"GET");
+        SharedPreferences sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
+        String token = sharedPreferences.getString("authorizedToken", "");
+        Future<String> request = HttpRequest.execute(url,"GET", token);
         String response;
         try {
             response = request.get();

@@ -1,5 +1,6 @@
 package rt.sae32.android;
 
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -17,20 +18,22 @@ import java.util.concurrent.Future;
 public class HttpRequest implements Callable<String> {
     private final String url;
     private final String method;
+    private final String token;
 
-    public HttpRequest(String url, String method) {
+    public HttpRequest(String url, String method, String token) {
         this.url = url;
         this.method = method;
+        this.token = token;
     }
 
     @Override
     public String call() {
-        String response = "";
+        String response;
         try {
             URL obj = new URL(url);
             HttpURLConnection con = (HttpURLConnection) obj.openConnection();
             con.setRequestMethod(method);
-            con.setRequestProperty("Authorization", "wJb~9E@ttr#{%?K7");
+            con.setRequestProperty("Authorization", token);
             con.setRequestProperty("User-Agent", "Android/SAE32-App");
             int responseCode = con.getResponseCode();
 
@@ -55,9 +58,9 @@ public class HttpRequest implements Callable<String> {
         return response;
     }
 
-    public static Future<String> execute(String url, String method) {
+    public static Future<String> execute(String url, String method, String token) {
         ExecutorService executor = Executors.newSingleThreadExecutor();
-        Future<String> future = executor.submit(new HttpRequest(url, method));
+        Future<String> future = executor.submit(new HttpRequest(url, method, token));
         executor.shutdown(); // it is very important to shutdown your non-singleton ExecutorService.
         return future;
     }

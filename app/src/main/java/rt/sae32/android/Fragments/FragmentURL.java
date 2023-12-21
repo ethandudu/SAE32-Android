@@ -31,19 +31,22 @@ public class FragmentURL extends Fragment {
         Button buttonnext = view.findViewById(R.id.next);
         Button buttonback = view.findViewById(R.id.previous);
 
-        EditText editText = view.findViewById(R.id.url);
+        EditText urlText = view.findViewById(R.id.url);
+        EditText tokenText = view.findViewById(R.id.token);
+
 
         if (sharedPreferences.contains("serverUrl")) {
-            editText.setText(sharedPreferences.getString("serverUrl", ""));
+            urlText.setText(sharedPreferences.getString("serverUrl", ""));
         }
 
         buttonnext.setOnClickListener(v -> {
-            if (!checkUrl(editText.getText().toString())) {
-                Toast.makeText(requireActivity(), "URL Invalide", Toast.LENGTH_SHORT).show();
+            if (!checkEmpty(urlText.getText().toString(),tokenText.getText().toString())) {
+                Toast.makeText(requireActivity(), "Merci de remplir tous les éléments", Toast.LENGTH_SHORT).show();
                 return;
             } else {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("serverUrl", editText.getText().toString());
+                editor.putString("serverUrl", urlText.getText().toString());
+                editor.putString("authorizedToken", tokenText.getText().toString());
                 editor.apply();
             }
 
@@ -68,7 +71,10 @@ public class FragmentURL extends Fragment {
         return view;
     }
 
-    private boolean checkUrl(String url) {
-        return url != null && !url.isEmpty();
+    private Boolean checkEmpty(String url, String token) {
+        boolean emptyurl = url.isEmpty();
+        boolean emptytoken = token.isEmpty();
+
+        return !emptyurl && !emptytoken;
     }
 }

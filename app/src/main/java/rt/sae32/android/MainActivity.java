@@ -35,7 +35,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ListView laListe = findViewById(R.id.idListeView);
         laListe.setOnItemClickListener(this::onItemClick);
-        checkSettings();
+        if (!checkSettings()) {
+            finish();
+            return;
+        }
         refreshData(true);
         registerForContextMenu(laListe);
     }
@@ -61,8 +64,10 @@ public class MainActivity extends AppCompatActivity {
         }
         String server = ServerUrl.getServerUrl(this);
         //prepare the request
-        String url = server + "/tests.php";
-        Future<String> request = HttpRequest.execute(url,"GET");
+        SharedPreferences sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
+        String token = sharedPreferences.getString("authorizedToken", "");
+        String url = server + R.string.testUrl;
+        Future<String> request = HttpRequest.execute(url,"GET", token);
         String response = "";
 
         try {
@@ -122,8 +127,10 @@ public class MainActivity extends AppCompatActivity {
             builder.setPositiveButton("Valider", (dialog, which) -> {
                 String[] parts = tests[info.position].split(" - ");
                 String idTest = parts[0];
+                SharedPreferences sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
+                String token = sharedPreferences.getString("authorizedToken", "");
                 String url = ServerUrl.getServerUrl(MainActivity.this) + getString(R.string.modifyUrl) + "?fileid=" + idTest + "&name=" + input.getText().toString();
-                Future<String> request = HttpRequest.execute(url,"GET");
+                Future<String> request = HttpRequest.execute(url,"GET", token);
                 String response;
                 try {
                     response = request.get();
@@ -154,8 +161,10 @@ public class MainActivity extends AppCompatActivity {
                 assert info != null;
                 String[] parts = tests[info.position].split(" - ");
                 String idTest = parts[0];
+                SharedPreferences sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
+                String token = sharedPreferences.getString("authorizedToken", "");
                 String url = ServerUrl.getServerUrl(MainActivity.this) + getString(R.string.deleteTestUrl) + "?fileid=" + idTest;
-                Future<String> request = HttpRequest.execute(url,"GET");
+                Future<String> request = HttpRequest.execute(url,"GET", token);
                 String response;
                 try {
                     response = request.get();
@@ -180,14 +189,14 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
-    private void checkSettings() {
+    private synchronized Boolean checkSettings() {
         SharedPreferences sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
         if (!sharedPreferences.contains("firstStart")) {
             Intent intent = new Intent(this, FirstStart.class);
             startActivity(intent);
-            finish();
+            return false;
         }
-
+        return true;
     }
 
     public void refreshData(View view) {

@@ -3,6 +3,7 @@ package rt.sae32.android;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -51,7 +52,9 @@ public class PacketsList extends AppCompatActivity {
         String server = ServerUrl.getServerUrl(this);
         //prepare the request
         String url = server + getString(R.string.packetsUrl) + "?fileid=" + getIntent().getStringExtra("idTest");
-        Future<String> request = HttpRequest.execute(url,"GET");
+        SharedPreferences sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
+        String token = sharedPreferences.getString("authorizedToken", "");
+        Future<String> request = HttpRequest.execute(url,"GET", token);
         String response = "";
 
         try {
