@@ -123,27 +123,24 @@ public class MainActivity extends AppCompatActivity {
             final EditText input = new EditText(this);
             builder.setView(input);
             builder.setCancelable(true);
-            builder.setPositiveButton("Valider", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    String url = ServerUrl.getServerUrl(MainActivity.this) + getString(R.string.modifyUrl) + "?fileid=" + idTest + "&name=" + input.getText().toString();
-                    Future<String> request = HttpRequest.execute(url,"GET");
-                    String response;
-                    try {
-                        response = request.get();
-                        //read the json
-                        System.out.println(response);
-                        JSONObject json = new JSONObject(response);
-                        String status = json.getString("responsecode");
-                        if (status.equals("200")) {
-                            Toast.makeText(getApplicationContext(),"Modification réussie",Toast.LENGTH_LONG).show();
-                            refreshData(false);
-                        } else {
-                            Toast.makeText(getApplicationContext(),"Erreur lors de la modification",Toast.LENGTH_LONG).show();
-                        }
-                    } catch (ExecutionException | InterruptedException | JSONException e) {
-                        throw new RuntimeException(e);
+            builder.setPositiveButton("Valider", (dialog, which) -> {
+                String url = ServerUrl.getServerUrl(MainActivity.this) + getString(R.string.modifyUrl) + "?fileid=" + idTest + "&name=" + input.getText().toString();
+                Future<String> request = HttpRequest.execute(url,"GET");
+                String response;
+                try {
+                    response = request.get();
+                    //read the json
+                    System.out.println(response);
+                    JSONObject json = new JSONObject(response);
+                    String status = json.getString("responsecode");
+                    if (status.equals("200")) {
+                        Toast.makeText(getApplicationContext(),"Modification réussie",Toast.LENGTH_LONG).show();
+                        refreshData(false);
+                    } else {
+                        Toast.makeText(getApplicationContext(),"Erreur lors de la modification",Toast.LENGTH_LONG).show();
                     }
+                } catch (ExecutionException | InterruptedException | JSONException e) {
+                    throw new RuntimeException(e);
                 }
             });
             builder.setNegativeButton("Annuler", (dialog, which) -> dialog.cancel());
