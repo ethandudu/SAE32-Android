@@ -74,8 +74,8 @@
         android:backgroundTint="#00FFFFFF"
         android:contentDescription="@string/bottom_sheet_behavior"
         android:onClick="returnToPreviousActivity"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="@id/header"
+        app:layout_constraintTop_toTopOf="@id/header"
         app:srcCompat="?attr/homeAsUpIndicator"
         app:tint="@color/main_50" />
 
@@ -83,13 +83,13 @@
         android:id="@+id/packet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="96dp"
+        android:layout_marginStart="22dp"
         android:layout_marginTop="14dp"
         android:text="Paquet :"
         android:textColor="@color/main_50"
         android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@id/returnButton"
+        app:layout_constraintTop_toTopOf="@id/header" />
 
     <EditText
         android:id="@+id/editTextTextMultiLine"

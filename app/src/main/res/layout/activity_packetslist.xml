@@ -21,13 +21,13 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="96dp"
+        android:layout_marginStart="22dp"
         android:layout_marginTop="14dp"
         android:text="Test n° :"
         android:textColor="@color/main_50"
         android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/imageButton4"
+        app:layout_constraintTop_toTopOf="@id/header" />
 
     <ListView
         android:id="@+id/listview"
@@ -48,8 +48,8 @@
         android:backgroundTint="#00FFFFFF"
         android:contentDescription="Retour"
         android:onClick="returnToMainActivity"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="@id/header"
+        app:layout_constraintTop_toTopOf="@id/header"
         app:srcCompat="?attr/homeAsUpIndicator"
         app:tint="@color/main_50" />
 </androidx.constraintlayout.widget.ConstraintLayout>
