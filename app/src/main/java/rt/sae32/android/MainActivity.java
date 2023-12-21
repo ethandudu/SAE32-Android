@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         //prepare the request
         SharedPreferences sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
         String token = sharedPreferences.getString("authorizedToken", "");
-        String url = server + R.string.testUrl;
+        String url = server + getString(R.string.testUrl);
         Future<String> request = HttpRequest.execute(url,"GET", token);
         String response = "";
 
