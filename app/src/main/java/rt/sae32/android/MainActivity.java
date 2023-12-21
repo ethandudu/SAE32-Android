@@ -6,6 +6,8 @@ import static com.google.android.gms.tasks.Tasks.await;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -15,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -115,14 +118,49 @@ public class MainActivity extends AppCompatActivity {
     public boolean onContextItemSelected(MenuItem item) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         if (item.getTitle()=="Modifier"){
-            Toast.makeText(getApplicationContext(),"Modifier",Toast.LENGTH_LONG).show();
+            assert info != null;
+            String[] parts = tests[info.position].split(" - ");
+            String idTest = parts[0];
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Modifier le nom du test");
+            builder.setMessage("Entrez le nouveau nom du test");
+            //set the edit text
+            final EditText input = new EditText(this);
+            builder.setView(input);
+            builder.setCancelable(true);
+            builder.setPositiveButton("Valider", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    String url = ServerUrl.getServerUrl(MainActivity.this) + getString(R.string.modifyUrl) + "?fileid=" + idTest + "&name=" + input.getText().toString();
+                    Future<String> request = HttpRequest.execute(url,"GET");
+                    String response;
+                    try {
+                        response = request.get();
+                        //read the json
+                        System.out.println(response);
+                        JSONObject json = new JSONObject(response);
+                        String status = json.getString("responsecode");
+                        if (status.equals("200")) {
+                            Toast.makeText(getApplicationContext(),"Modification réussie",Toast.LENGTH_LONG).show();
+                            refreshData(findViewById(R.id.refresh),false);
+                        } else {
+                            Toast.makeText(getApplicationContext(),"Erreur lors de la modification",Toast.LENGTH_LONG).show();
+                        }
+                    } catch (ExecutionException | InterruptedException | JSONException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            });
+            builder.setNegativeButton("Annuler", (dialog, which) -> dialog.cancel());
+            builder.show();
+
         }
         else if (item.getTitle()=="Supprimer") {
             //request to delete the test
             assert info != null;
             String[] parts = tests[info.position].split(" - ");
             String idTest = parts[0];
-            String url = getString(R.string.deleteTestUrl) + "?fileid=" + idTest;
+            String url = ServerUrl.getServerUrl(this) + getString(R.string.deleteTestUrl) + "?fileid=" + idTest;
             Future<String> request = HttpRequest.execute(url,"GET");
             String response;
             try {
