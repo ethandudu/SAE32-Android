@@ -6,6 +6,32 @@
     android:layout_height="match_parent"
     tools:context=".Settings">
 
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/darktheme"
+        android:layout_width="263dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="22dp"
+        android:text="Thème sombre"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/macresolution"
+        app:thumbTint="?attr/colorTertiary"
+        app:trackTint="@color/secondary_600" />
+
+    <EditText
+        android:id="@+id/token"
+        android:layout_width="373dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="24dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="wJb~9E@ttr#{%?K7"
+        android:inputType="text|textUri|textNoSuggestions"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/serverUrl" />
+
     <View
         android:id="@+id/view3"
         android:layout_width="463dp"
@@ -52,10 +78,10 @@
         android:layout_width="263dp"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="116dp"
+        android:layout_marginTop="39dp"
         android:text="@string/macvendorresolution"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view3"
         app:thumbTint="?attr/colorTertiary"
         app:trackTint="@color/secondary_600" />
 
@@ -63,20 +89,19 @@
         android:id="@+id/save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="140dp"
         android:layout_marginBottom="52dp"
         android:onClick="saveSettings"
         android:text="@string/save"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/serverUrl"
         android:layout_width="373dp"
         android:layout_height="48dp"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="188dp"
-        android:layout_marginEnd="21dp"
+        android:layout_marginTop="24dp"
         android:autofillHints="@string/serverUrlHint"
         android:ems="10"
         android:inputType="text|textUri"
@@ -84,6 +109,6 @@
         android:text="@string/serverUrlHint"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/darktheme" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
