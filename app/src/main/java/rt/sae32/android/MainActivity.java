@@ -2,8 +2,6 @@ package rt.sae32.android;
 
 import static android.app.usage.UsageEvents.Event.NONE;
 
-import static com.google.android.gms.tasks.Tasks.await;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
@@ -39,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         ListView laListe = findViewById(R.id.idListeView);
         laListe.setOnItemClickListener(this::onItemClick);
         checkSettings();
-        refreshData(findViewById(R.id.refresh), true);
+        refreshData(true);
         registerForContextMenu(laListe);
     }
 
@@ -58,10 +56,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Settings.class);
         startActivity(intent);
     }
-    /**
-     * @param view the view that called the method
-     */
-    public void refreshData(View view, Boolean init) {
+    public void refreshData(Boolean init) {
         if (!init) {
             Toast.makeText(this, "Actualisation ...", Toast.LENGTH_SHORT).show();
         }
@@ -142,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
                         String status = json.getString("responsecode");
                         if (status.equals("200")) {
                             Toast.makeText(getApplicationContext(),"Modification réussie",Toast.LENGTH_LONG).show();
-                            refreshData(findViewById(R.id.refresh),false);
+                            refreshData(false);
                         } else {
                             Toast.makeText(getApplicationContext(),"Erreur lors de la modification",Toast.LENGTH_LONG).show();
                         }
@@ -170,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
                 String status = json.getString("responsecode");
                 if (status.equals("200")) {
                     Toast.makeText(getApplicationContext(),"Suppression réussie",Toast.LENGTH_LONG).show();
-                    refreshData(findViewById(R.id.refresh),false);
+                    refreshData(false);
                 } else {
                     Toast.makeText(getApplicationContext(),"Erreur lors de la suppression",Toast.LENGTH_LONG).show();
                 }
@@ -194,6 +189,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void refreshData(View view) {
-        refreshData(view, false);
+        refreshData(false);
     }
 }
