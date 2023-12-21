@@ -5,7 +5,6 @@ import static android.app.usage.UsageEvents.Event.NONE;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -114,16 +113,15 @@ public class MainActivity extends AppCompatActivity {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         if (item.getTitle()=="Modifier"){
             assert info != null;
-            String[] parts = tests[info.position].split(" - ");
-            String idTest = parts[0];
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Modifier le nom du test");
             builder.setMessage("Entrez le nouveau nom du test");
-            //set the edit text
             final EditText input = new EditText(this);
             builder.setView(input);
             builder.setCancelable(true);
             builder.setPositiveButton("Valider", (dialog, which) -> {
+                String[] parts = tests[info.position].split(" - ");
+                String idTest = parts[0];
                 String url = ServerUrl.getServerUrl(MainActivity.this) + getString(R.string.modifyUrl) + "?fileid=" + idTest + "&name=" + input.getText().toString();
                 Future<String> request = HttpRequest.execute(url,"GET");
                 String response;
@@ -148,27 +146,34 @@ public class MainActivity extends AppCompatActivity {
 
         }
         else if (item.getTitle()=="Supprimer") {
-            //request to delete the test
-            assert info != null;
-            String[] parts = tests[info.position].split(" - ");
-            String idTest = parts[0];
-            String url = ServerUrl.getServerUrl(this) + getString(R.string.deleteTestUrl) + "?fileid=" + idTest;
-            Future<String> request = HttpRequest.execute(url,"GET");
-            String response;
-            try {
-                response = request.get();
-                //read the json
-                JSONObject json = new JSONObject(response);
-                String status = json.getString("responsecode");
-                if (status.equals("200")) {
-                    Toast.makeText(getApplicationContext(),"Suppression réussie",Toast.LENGTH_LONG).show();
-                    refreshData(false);
-                } else {
-                    Toast.makeText(getApplicationContext(),"Erreur lors de la suppression",Toast.LENGTH_LONG).show();
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Supprimer le test");
+            builder.setMessage("Êtes-vous sûr de vouloir supprimer ce test ?");
+            builder.setCancelable(true);
+            builder.setPositiveButton("Valider", (dialog, which) -> {
+                assert info != null;
+                String[] parts = tests[info.position].split(" - ");
+                String idTest = parts[0];
+                String url = ServerUrl.getServerUrl(MainActivity.this) + getString(R.string.deleteTestUrl) + "?fileid=" + idTest;
+                Future<String> request = HttpRequest.execute(url,"GET");
+                String response;
+                try {
+                    response = request.get();
+                    //read the json
+                    JSONObject json = new JSONObject(response);
+                    String status = json.getString("responsecode");
+                    if (status.equals("200")) {
+                        Toast.makeText(getApplicationContext(),"Suppression réussie",Toast.LENGTH_LONG).show();
+                        refreshData(false);
+                    } else {
+                        Toast.makeText(getApplicationContext(),"Erreur lors de la suppression",Toast.LENGTH_LONG).show();
+                    }
+                } catch (ExecutionException | InterruptedException | JSONException e) {
+                    throw new RuntimeException(e);
                 }
-            } catch (ExecutionException | InterruptedException | JSONException e) {
-                throw new RuntimeException(e);
-            }
+            });
+            builder.setNegativeButton("Annuler", (dialog, which) -> dialog.cancel());
+            builder.show();
         } else {
             return false;
         }
