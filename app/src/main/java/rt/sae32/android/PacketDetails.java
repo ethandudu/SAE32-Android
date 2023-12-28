@@ -65,16 +65,24 @@ public class PacketDetails extends AppCompatActivity {
             TextView protocol = findViewById(R.id.protocol);
             TextView macsrc = findViewById(R.id.macSource);
             TextView macdst = findViewById(R.id.macDest);
+            TextView data = findViewById(R.id.editTextTextMultiLine);
 
 
             StringBuilder protocolString = new StringBuilder();
             JSONArray protocols = new JSONArray(array.getJSONObject(0).getString("protocols"));
             boolean isIP = false;
+
             for (int i = 0; i < protocols.length(); i++) {
                 protocolString.append(protocols.getString(i)).append(" ");
                 if (protocols.getString(i).equals("ip") || protocols.getString(i).equals("ipv6")) {
                     isIP = true;
                 }
+            }
+
+            if (array.getJSONObject(0).getString("data").length() > 0) {
+                data.setText(formatData(array.getJSONObject(0).getString("data")));
+            } else {
+                data.setVisibility(View.GONE);
             }
 
             protocol.setText(MessageFormat.format("{0}{1}", getString(R.string.protocols), protocolString.toString()));
@@ -121,6 +129,19 @@ public class PacketDetails extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Format the JSON data to be more readable
+     * @param data the data to format from the JSON object
+     * @return the formatted data as human readable string
+     */
+    private String formatData(String data) throws JSONException {
+        JSONObject json = new JSONObject(data);
+        StringBuilder builder = new StringBuilder();
+        builder.append(json.toString(4));
+        return builder.toString();
+    }
+
 
     private boolean checkSettings(){
         SharedPreferences sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
