@@ -1,8 +1,10 @@
 package rt.sae32.android;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -41,8 +43,20 @@ public class Settings extends AppCompatActivity {
             }
         });
 
+        //handle the back button press
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                returnToMainActivity(null);
+            }
+        };
+        getOnBackPressedDispatcher().addCallback(this, callback);
+
     }
+
     public void returnToMainActivity(View view){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
         super.finish();
     }
 
@@ -63,6 +77,6 @@ public class Settings extends AppCompatActivity {
         editor.putBoolean("darkMode", darkSwitch.isChecked());
 
         editor.apply();
-        super.finish();
+        returnToMainActivity(view);
     }
 }

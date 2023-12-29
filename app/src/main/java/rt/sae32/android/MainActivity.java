@@ -3,6 +3,7 @@ package rt.sae32.android;
 import static android.app.usage.UsageEvents.Event.NONE;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.app.AlertDialog;
 import android.content.SharedPreferences;
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme();
         setContentView(R.layout.activity_main);
         ListView laListe = findViewById(R.id.idListeView);
         laListe.setOnItemClickListener(this::onItemClick);
@@ -57,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
     public void openSettings(View v){
         Intent intent = new Intent(this, Settings.class);
         startActivity(intent);
+        super.finish();
     }
     public void refreshData(Boolean init) {
         if (!init) {
@@ -189,6 +192,15 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
+    public void setTheme(){
+        SharedPreferences sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
+        if (sharedPreferences.getBoolean("darkMode", false)){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
+    }
+
     private synchronized Boolean checkSettings() {
         SharedPreferences sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
         if (!sharedPreferences.contains("firstStart")) {
@@ -198,7 +210,6 @@ public class MainActivity extends AppCompatActivity {
         }
         return true;
     }
-
     public void refreshData(View view) {
         refreshData(false);
     }
