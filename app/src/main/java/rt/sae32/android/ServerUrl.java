@@ -5,10 +5,10 @@ import android.content.SharedPreferences;
 
 public class ServerUrl {
     public static String getServerUrl(Context context) {
-        return urlsettings(context);
+        return urlSettings(context);
     }
 
-    private static String urlsettings(Context context){
+    private static String urlSettings(Context context){
         SharedPreferences prefs = context.getSharedPreferences("settings", Context.MODE_PRIVATE);
         return prefs.getString("serverUrl", "https://api.sae32.ethanduault.fr");
     }

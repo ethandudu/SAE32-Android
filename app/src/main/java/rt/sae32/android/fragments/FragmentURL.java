@@ -1,4 +1,4 @@
-package rt.sae32.android.Fragments;
+package rt.sae32.android.fragments;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -28,8 +28,8 @@ public class FragmentURL extends Fragment {
         SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("settings", MODE_PRIVATE);
 
 
-        Button buttonnext = view.findViewById(R.id.next);
-        Button buttonback = view.findViewById(R.id.previous);
+        Button buttonNext = view.findViewById(R.id.next);
+        Button buttonBack = view.findViewById(R.id.previous);
 
         EditText urlText = view.findViewById(R.id.url);
         EditText tokenText = view.findViewById(R.id.token);
@@ -39,7 +39,7 @@ public class FragmentURL extends Fragment {
             urlText.setText(sharedPreferences.getString("serverUrl", ""));
         }
 
-        buttonnext.setOnClickListener(v -> {
+        buttonNext.setOnClickListener(v -> {
             if (!checkEmpty(urlText.getText().toString(),tokenText.getText().toString())) {
                 Toast.makeText(requireActivity(), "Merci de remplir tous les éléments", Toast.LENGTH_SHORT).show();
                 return;
@@ -59,7 +59,7 @@ public class FragmentURL extends Fragment {
             transaction.commit();
         });
 
-        buttonback.setOnClickListener(v -> {
+        buttonBack.setOnClickListener(v -> {
             FragmentWelcome fragmentWelcome = new FragmentWelcome();
             FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -72,9 +72,9 @@ public class FragmentURL extends Fragment {
     }
 
     private Boolean checkEmpty(String url, String token) {
-        boolean emptyurl = url.isEmpty();
-        boolean emptytoken = token.isEmpty();
+        boolean emptyURL = url.isEmpty();
+        boolean emptyToken = token.isEmpty();
 
-        return !emptyurl && !emptytoken;
+        return !emptyURL && !emptyToken;
     }
 }

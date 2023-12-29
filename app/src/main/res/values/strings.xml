@@ -17,9 +17,20 @@
     <string name="save">Sauvegarder</string>
     <string name="serverUrlHint">URL du serveur</string>
     <string name="suivant">Suivant</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="startup_text">Bienvenue dans l\'application SAE32 ! \nIl semblerait que c\'est votre première fois par ici, laissez vous guider par les étapes suivantes.\n Vous êtes à deux doigts de pouvoir utiliser l\'application</string>
     <string name="https_domain_com">https://domain.com</string>
-    <string name="pr_c_dent">Précédent</string>
-    <string name="param_tres">Paramètres</string>
+    <string name="precedent">Précédent</string>
+    <string name="parametres">Paramètres</string>
+    <string name="ip_destination">IP Destination :</string>
+    <string name="ip_source">IP Source :</string>
+    <string name="protocole">Protocole :</string>
+    <string name="paquet">Paquet :</string>
+    <string name="mac_source">MAC Source :</string>
+    <string name="mac_destination">MAC Destination :</string>
+    <string name="test_n">Test n° :</string>
+    <string name="theme_sombre">Thème sombre</string>
+    <string name="token_example">wJb~9E@ttr#{%?K7</string>
+    <string name="api">API</string>
+    <string name="ask_api_url">Merci d\'entrer l\'URL de votre API au format https://domain.com</string>
+    <string name="ask_api_token">Merci d\'entrer votre token de connexion à l\'API</string>
 </resources>

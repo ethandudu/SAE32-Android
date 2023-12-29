@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="31dp"
         android:layout_marginTop="81dp"
-        android:text="Protocole : "
+        android:text="@string/protocole"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/header" />
 
@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="31dp"
         android:layout_marginTop="20dp"
-        android:text="MAC Source : "
+        android:text="@string/mac_source"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/protocol" />
 
@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="31dp"
         android:layout_marginTop="21dp"
-        android:text="MAC Destination : "
+        android:text="@string/mac_destination"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/macSource" />
 
@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="31dp"
         android:layout_marginTop="17dp"
-        android:text="IP Source : "
+        android:text="@string/ip_source"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/macDest" />
 
@@ -61,7 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="31dp"
         android:layout_marginTop="21dp"
-        android:text="IP Destination : "
+        android:text="@string/ip_destination"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ipSource" />
 
@@ -85,13 +85,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="22dp"
         android:layout_marginTop="14dp"
-        android:text="Paquet :"
+        android:text="@string/paquet"
         android:textColor="@color/main_50"
         android:textSize="24sp"
         app:layout_constraintStart_toEndOf="@id/returnButton"
         app:layout_constraintTop_toTopOf="@id/header" />
 
     <EditText
+
         android:id="@+id/editTextTextMultiLine"
         android:layout_width="345dp"
         android:layout_height="296dp"
@@ -100,12 +101,14 @@
         android:clickable="false"
         android:ems="10"
         android:gravity="start|top"
-        android:hint="@string/empty"
+        android:hint="@null"
+        android:importantForAccessibility="no"
         android:inputType="textMultiLine"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ipDest" />
+        app:layout_constraintTop_toBottomOf="@+id/ipDest"
+        android:importantForAutofill="no" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

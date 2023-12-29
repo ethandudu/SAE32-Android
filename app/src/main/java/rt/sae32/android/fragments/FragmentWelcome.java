@@ -1,4 +1,4 @@
-package rt.sae32.android.Fragments;
+package rt.sae32.android.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -20,18 +20,14 @@ public class FragmentWelcome extends Fragment {
         View view = inflater.inflate(R.layout.fragment_welcome, container, false);
 
         Button button = view.findViewById(R.id.next);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-
-            public void onClick(View v) {
-            FragmentURL fragmentURL = new FragmentURL();
-            FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
-            FragmentTransaction transaction = fragmentManager.beginTransaction();
-            transaction.replace(R.id.fragment_container, fragmentURL);
-            transaction.addToBackStack(null);
-            transaction.commit();
-        }
-        });
+        button.setOnClickListener(v -> {
+        FragmentURL fragmentURL = new FragmentURL();
+        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.fragment_container, fragmentURL);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    });
 
         return view;
     }

@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import rt.sae32.android.Fragments.FragmentWelcome;
+import rt.sae32.android.fragments.FragmentWelcome;
 
 public class FirstStart extends AppCompatActivity {
 

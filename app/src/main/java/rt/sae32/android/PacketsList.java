@@ -27,7 +27,7 @@ public class PacketsList extends AppCompatActivity {
         setContentView(R.layout.activity_packetslist);
 
         TextView testName = findViewById(R.id.textView2);
-        testName.setText(String.format("Test n°%s", getIntent().getStringExtra("testFullname")));
+        testName.setText(String.format("Test n°%s", getIntent().getStringExtra("testFullName")));
         getData();
 
         ListView laListe = findViewById(R.id.listview);

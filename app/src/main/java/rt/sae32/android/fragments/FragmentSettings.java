@@ -1,4 +1,4 @@
-package rt.sae32.android.Fragments;
+package rt.sae32.android.fragments;
 
 import android.content.Context;
 import android.content.Intent;

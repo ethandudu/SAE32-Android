@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         String idTest = parts[0];
         Intent intent= new Intent(this, PacketsList.class);
         intent.putExtra("idTest", idTest);
-        intent.putExtra("testFullname", tests[pos]);
+        intent.putExtra("testFullName", tests[pos]);
         startActivity(intent);
     }
 

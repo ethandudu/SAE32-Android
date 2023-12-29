@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.FragmentSettings">
+    tools:context=".fragments.FragmentSettings">
 
     <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/macresolution"
@@ -25,7 +25,7 @@
         android:layout_width="263dp"
         android:layout_height="48dp"
         android:layout_marginTop="36dp"
-        android:text="Thème sombre"
+        android:text="@string/theme_sombre"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,7 +52,7 @@
         android:layout_width="135dp"
         android:layout_height="28dp"
         android:layout_marginTop="54dp"
-        android:text="@string/param_tres"
+        android:text="@string/parametres"
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -78,7 +78,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="45dp"
         android:layout_marginBottom="16dp"
-        android:text="@string/pr_c_dent"
+        android:text="@string/precedent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

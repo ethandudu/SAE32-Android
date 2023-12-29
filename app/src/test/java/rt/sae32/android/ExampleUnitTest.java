@@ -1,4 +1,4 @@
-package com.example.android;
+package rt.sae32.android;
 
 import org.junit.Test;
 

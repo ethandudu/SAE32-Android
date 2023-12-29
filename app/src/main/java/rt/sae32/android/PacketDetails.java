@@ -137,9 +137,7 @@ public class PacketDetails extends AppCompatActivity {
      */
     private String formatData(String data) throws JSONException {
         JSONObject json = new JSONObject(data);
-        StringBuilder builder = new StringBuilder();
-        builder.append(json.toString(4));
-        return builder.toString();
+        return json.toString(4);
     }
 
 
