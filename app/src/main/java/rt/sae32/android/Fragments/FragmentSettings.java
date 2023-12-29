@@ -3,9 +3,11 @@ package rt.sae32.android.Fragments;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -26,23 +28,29 @@ public class FragmentSettings extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
 
-        Button buttonnext = view.findViewById(R.id.next);
-        Button buttonback = view.findViewById(R.id.previous);
+        Button buttonNext = view.findViewById(R.id.next);
+        Button buttonBack = view.findViewById(R.id.previous);
 
         SwitchMaterial macResolution = view.findViewById(R.id.macresolution);
         SwitchMaterial darkSwitch = view.findViewById(R.id.darktheme);
 
+        //check if the OS is in dark mode
+        if ((getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES) {
+            darkSwitch.setChecked(true);
+        }
+
         darkSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
-                //enable dark theme
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
             } else {
-                //disable dark theme
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
             }
         });
-        buttonnext.setOnClickListener(v -> {
+
+        buttonNext.setOnClickListener(v -> {
             SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("settings", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putBoolean("darkmode", darkSwitch.isChecked());
+            editor.putBoolean("darkMode", darkSwitch.isChecked());
             editor.putBoolean("macResolution", macResolution.isChecked());
             editor.putBoolean("firstStart", true);
             editor.apply();
@@ -52,7 +60,7 @@ public class FragmentSettings extends Fragment {
             requireActivity().finish();
         });
 
-        buttonback.setOnClickListener(v -> {
+        buttonBack.setOnClickListener(v -> {
             FragmentURL fragmentURL = new FragmentURL();
             FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();

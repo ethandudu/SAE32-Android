@@ -1,6 +1,7 @@
 package rt.sae32.android;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -21,8 +22,21 @@ public class Settings extends AppCompatActivity {
             SwitchMaterial macResolution = findViewById(R.id.macresolution);
             macResolution.setChecked(true);
         }
+
+        SwitchMaterial darkSwitch = findViewById(R.id.darktheme);
+        if (sharedPreferences.getBoolean("darkMode", false)){
+            darkSwitch.setChecked(true);
+        }
         EditText serverUrl = findViewById(R.id.serverUrl);
         serverUrl.setText(sharedPreferences.getString("serverUrl", ""));
+
+        darkSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            }
+        });
 
     }
     public void returnToMainActivity(View view){
@@ -30,15 +44,19 @@ public class Settings extends AppCompatActivity {
     }
 
     public void saveSettings(View view){
-        SwitchMaterial macResolution = findViewById(R.id.macresolution);
         SharedPreferences sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        SwitchMaterial macResolution = findViewById(R.id.macresolution);
         editor.putBoolean("macResolution", macResolution.isChecked());
+
         EditText serverUrl = findViewById(R.id.serverUrl);
         editor.putString("serverUrl", serverUrl.getText().toString());
+
+        SwitchMaterial darkSwitch = findViewById(R.id.darktheme);
+        editor.putBoolean("darkMode", darkSwitch.isChecked());
+
         editor.apply();
         super.finish();
     }
-
-
 }
