@@ -30,6 +30,9 @@ public class Settings extends AppCompatActivity {
         EditText serverUrl = findViewById(R.id.serverUrl);
         serverUrl.setText(sharedPreferences.getString("serverUrl", ""));
 
+        EditText token = findViewById(R.id.token);
+        token.setText(sharedPreferences.getString("authorizedToken", ""));
+
         darkSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
@@ -52,6 +55,9 @@ public class Settings extends AppCompatActivity {
 
         EditText serverUrl = findViewById(R.id.serverUrl);
         editor.putString("serverUrl", serverUrl.getText().toString());
+
+        EditText token = findViewById(R.id.token);
+        editor.putString("authorizedToken", token.getText().toString());
 
         SwitchMaterial darkSwitch = findViewById(R.id.darktheme);
         editor.putBoolean("darkMode", darkSwitch.isChecked());
