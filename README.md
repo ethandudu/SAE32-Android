@@ -14,7 +14,7 @@ Actual state of the Github Actions tests jobs :
 |Android CI|[![Checks](https://github.com/ethandudu/SAE32-Android/actions/workflows/android.yml/badge.svg?branch=main)](https://github.com/ethandudu/SAE32-Android/actions/workflows/android.yml)|
 
 ## Installation
-For the installation, go check the Installation guide in the [Wiki](https://github.com/ethandudu/SAE32-API/wiki/Installation).
+For the installation, go check the Installation guide in the [Wiki](https://github.com/ethandudu/SAE32-Android/wiki/Installation).
 
 ## Credits
 
