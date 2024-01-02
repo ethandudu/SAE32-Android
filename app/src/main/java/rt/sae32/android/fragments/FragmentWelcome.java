@@ -20,14 +20,16 @@ public class FragmentWelcome extends Fragment {
         View view = inflater.inflate(R.layout.fragment_welcome, container, false);
 
         Button button = view.findViewById(R.id.next);
+
+        // listen for the click on the next button
         button.setOnClickListener(v -> {
-        FragmentURL fragmentURL = new FragmentURL();
-        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.fragment_container, fragmentURL);
-        transaction.addToBackStack(null);
-        transaction.commit();
-    });
+            FragmentURL fragmentURL = new FragmentURL();
+            FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.replace(R.id.fragment_container, fragmentURL);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        });
 
         return view;
     }

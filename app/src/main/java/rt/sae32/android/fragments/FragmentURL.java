@@ -35,10 +35,16 @@ public class FragmentURL extends Fragment {
         EditText tokenText = view.findViewById(R.id.token);
 
 
+        // check if the serverUrl and authorizedToken was already set but the setup was not finished
         if (sharedPreferences.contains("serverUrl")) {
             urlText.setText(sharedPreferences.getString("serverUrl", ""));
         }
 
+        if (sharedPreferences.contains("authorizedToken")) {
+            tokenText.setText(sharedPreferences.getString("authorizedToken", ""));
+        }
+
+        // listen for the click on the next button
         buttonNext.setOnClickListener(v -> {
             if (!checkEmpty(urlText.getText().toString(),tokenText.getText().toString())) {
                 Toast.makeText(requireActivity(), "Merci de remplir tous les éléments", Toast.LENGTH_SHORT).show();
@@ -50,7 +56,6 @@ public class FragmentURL extends Fragment {
                 editor.apply();
             }
 
-
             FragmentSettings fragmentSettings = new FragmentSettings();
             FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -59,6 +64,7 @@ public class FragmentURL extends Fragment {
             transaction.commit();
         });
 
+        // listen for the click on the back button
         buttonBack.setOnClickListener(v -> {
             FragmentWelcome fragmentWelcome = new FragmentWelcome();
             FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
@@ -71,6 +77,12 @@ public class FragmentURL extends Fragment {
         return view;
     }
 
+    /**
+     * Check if the url and the token are not empty
+     * @param url the url to check
+     * @param token the token to check
+     * @return true if the url and the token are not empty
+     */
     private Boolean checkEmpty(String url, String token) {
         boolean emptyURL = url.isEmpty();
         boolean emptyToken = token.isEmpty();

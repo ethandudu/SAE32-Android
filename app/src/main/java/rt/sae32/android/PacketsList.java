@@ -28,12 +28,20 @@ public class PacketsList extends AppCompatActivity {
 
         TextView testName = findViewById(R.id.textView2);
         testName.setText(String.format("Test n°%s", getIntent().getStringExtra("testFullName")));
-        getData();
+        String response = getData(getIntent().getStringExtra("idTest"));
+        readResponse(response);
 
         ListView laListe = findViewById(R.id.listview);
         laListe.setOnItemClickListener(this::onItemClick);
     }
 
+    /**
+     * handle the click on an item of the list
+     * @param p the parent
+     * @param v the view
+     * @param pos the position
+     * @param id the id
+     */
     public void onItemClick (AdapterView<?> p, View v, int pos, long id){
         //parsing the string to get the id of the test
         String[] parts = p.getItemAtPosition(pos).toString().split(" - ");
@@ -44,14 +52,23 @@ public class PacketsList extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * Return to the previous activity
+     * @param view the view of the button
+     */
     public void returnToMainActivity(View view){
         super.finish();
     }
 
-    private void getData(){
+    /**
+     * Get the data from the API
+     * @param idTest the id of the test
+     * @return the response of the API
+     */
+    private String getData(String idTest){
         String server = ServerUrl.getServerUrl(this);
         //prepare the request
-        String url = server + getString(R.string.packetsUrl) + "?fileid=" + getIntent().getStringExtra("idTest");
+        String url = server + getString(R.string.packetsUrl) + "?fileid=" + idTest;
         SharedPreferences sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
         String token = sharedPreferences.getString("authorizedToken", "");
         Future<String> request = HttpRequest.execute(url,"GET", token);
@@ -65,13 +82,17 @@ public class PacketsList extends AppCompatActivity {
 
         if (response.startsWith("Error")) {
             Toast.makeText(this, response, Toast.LENGTH_SHORT).show();
-            return;
+            return null;
         }
 
-        readResponse(response);
+        return response;
 
     }
 
+    /**
+     * Read the response and set the text of the textviews
+     * @param response the response of the API
+     */
     private void readResponse(String response){
         ArrayAdapter<String> adapter;
 

@@ -13,7 +13,7 @@ public class FirstStart extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first_start);
 
-        //check if the activity is restarted due to theme change
+        //check if the activity is restarted due to theme change, if not, add the welcome fragment
         if (savedInstanceState == null){
         FragmentWelcome fragmentWelcome = new FragmentWelcome();
         getSupportFragmentManager().beginTransaction()

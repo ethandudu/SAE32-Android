@@ -34,11 +34,12 @@ public class FragmentSettings extends Fragment {
         SwitchMaterial macResolution = view.findViewById(R.id.macresolution);
         SwitchMaterial darkSwitch = view.findViewById(R.id.darktheme);
 
-        //check if the OS is in dark mode
+        // check if the OS is in dark mode
         if ((getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES) {
             darkSwitch.setChecked(true);
         }
 
+        // listen the changes on the dark mode switch
         darkSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
@@ -47,6 +48,7 @@ public class FragmentSettings extends Fragment {
             }
         });
 
+        // listen for the click on the next button
         buttonNext.setOnClickListener(v -> {
             SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("settings", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -60,6 +62,7 @@ public class FragmentSettings extends Fragment {
             requireActivity().finish();
         });
 
+        // listen for the click on the back button
         buttonBack.setOnClickListener(v -> {
             FragmentURL fragmentURL = new FragmentURL();
             FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();

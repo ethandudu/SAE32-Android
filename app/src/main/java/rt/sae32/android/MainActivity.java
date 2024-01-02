@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatDelegate;
 
 import android.app.AlertDialog;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 
 import android.content.Intent;
@@ -46,6 +45,13 @@ public class MainActivity extends AppCompatActivity {
         registerForContextMenu(laListe);
     }
 
+    /**
+     * Handle the click on an item of the list
+     * @param p the adapter view
+     * @param v the view
+     * @param pos the position of the item in the list
+     * @param id the id of the item
+     */
     private void onItemClick (AdapterView<?> p, View v, int pos, long id){
         //parsing the string to get the id of the test
         String[] parts = tests[pos].split(" - ");
@@ -57,11 +63,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Open the settings activity
+     * @param v the view
+     */
     public void openSettings(View v){
         Intent intent = new Intent(this, Settings.class);
         startActivity(intent);
         super.finish();
     }
+
+    /**
+     * Refresh the data displayed in the list
+     * @param init if the refresh is done at the start of the activity
+     */
     public void refreshData(Boolean init) {
         if (!init) {
             Toast.makeText(this, "Actualisation ...", Toast.LENGTH_SHORT).show();
@@ -88,6 +103,10 @@ public class MainActivity extends AppCompatActivity {
         readResponse(response);
     }
 
+    /**
+     * Read the response of the server and display it
+     * @param response from the server
+     */
     private void readResponse(String response) {
         ArrayAdapter<String> adapter;
         try {
@@ -111,6 +130,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Create the context menu
+     * @param m the context menu
+     * @param v the view
+     * @param i the context menu info
+     */
     public void onCreateContextMenu(ContextMenu m, View v, ContextMenu.ContextMenuInfo i) {
         super.onCreateContextMenu(m, v, i);
         m.setHeaderTitle("Options");
@@ -118,16 +143,25 @@ public class MainActivity extends AppCompatActivity {
         m.add(NONE, v.getId(), 2, "Supprimer");
     }
 
+    /**
+     * Handle the context menu
+     * @param item the item selected
+     */
     public boolean onContextItemSelected(MenuItem item) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+
+        // Edit entry
         if (item.getTitle()=="Modifier"){
             assert info != null;
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Modifier le nom du test");
             builder.setMessage("Entrez le nouveau nom du test");
+
             final EditText input = new EditText(this);
             builder.setView(input);
             builder.setCancelable(true);
+
+            //listen for the click on the validate button
             builder.setPositiveButton("Valider", (dialog, which) -> {
                 String[] parts = tests[info.position].split(" - ");
                 String idTest = parts[0];
@@ -136,31 +170,38 @@ public class MainActivity extends AppCompatActivity {
                 String url = ServerUrl.getServerUrl(MainActivity.this) + getString(R.string.modifyUrl) + "?fileid=" + idTest + "&name=" + input.getText().toString();
                 Future<String> request = HttpRequest.execute(url,"GET", token);
                 String response;
+
                 try {
                     response = request.get();
                     //read the json
                     System.out.println(response);
                     JSONObject json = new JSONObject(response);
                     String status = json.getString("responsecode");
+
                     if (status.equals("200")) {
                         Toast.makeText(getApplicationContext(),"Modification réussie",Toast.LENGTH_LONG).show();
                         refreshData(false);
                     } else {
                         Toast.makeText(getApplicationContext(),"Erreur lors de la modification",Toast.LENGTH_LONG).show();
                     }
+
                 } catch (ExecutionException | InterruptedException | JSONException e) {
                     throw new RuntimeException(e);
                 }
             });
+
             builder.setNegativeButton("Annuler", (dialog, which) -> dialog.cancel());
             builder.show();
 
         }
+        // Delete entry
         else if (item.getTitle()=="Supprimer") {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Supprimer le test");
             builder.setMessage("Êtes-vous sûr de vouloir supprimer ce test ?");
             builder.setCancelable(true);
+
+            //listen for the click on the validate button
             builder.setPositiveButton("Valider", (dialog, which) -> {
                 assert info != null;
                 String[] parts = tests[info.position].split(" - ");
@@ -170,17 +211,20 @@ public class MainActivity extends AppCompatActivity {
                 String url = ServerUrl.getServerUrl(MainActivity.this) + getString(R.string.deleteTestUrl) + "?fileid=" + idTest;
                 Future<String> request = HttpRequest.execute(url,"GET", token);
                 String response;
+
                 try {
                     response = request.get();
                     //read the json
                     JSONObject json = new JSONObject(response);
                     String status = json.getString("responsecode");
+
                     if (status.equals("200")) {
                         Toast.makeText(getApplicationContext(),"Suppression réussie",Toast.LENGTH_LONG).show();
                         refreshData(false);
                     } else {
                         Toast.makeText(getApplicationContext(),"Erreur lors de la suppression",Toast.LENGTH_LONG).show();
                     }
+
                 } catch (ExecutionException | InterruptedException | JSONException e) {
                     throw new RuntimeException(e);
                 }
@@ -193,19 +237,22 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
+    /**
+     * Set the theme of the app to dark or light depending on the settings
+     */
     public void setTheme(){
-        // check if the device support Material You
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            SharedPreferences sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
-            if (sharedPreferences.getBoolean("darkMode", false)){
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-            } else {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-            }
+        SharedPreferences sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
+        if (sharedPreferences.getBoolean("darkMode", false)){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
-
     }
 
+    /**
+     * Check if the settings are set (detect the first start of the app after installation)
+     * @return true if the settings are set, false otherwise
+     */
     private synchronized Boolean checkSettings() {
         SharedPreferences sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
         if (!sharedPreferences.contains("firstStart")) {
@@ -215,6 +262,11 @@ public class MainActivity extends AppCompatActivity {
         }
         return true;
     }
+
+    /**
+     * Refresh the data displayed in the list (same as refreshData(Boolean init) but with init = false), (used by the refresh button)
+     * @param view the view
+     */
     public void refreshData(View view) {
         refreshData(false);
     }

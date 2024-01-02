@@ -20,12 +20,21 @@ public class HttpRequest implements Callable<String> {
     private final String method;
     private final String token;
 
+    /**
+     * @param url the url to call
+     * @param method the method to use (GET, POST, PUT, DELETE)
+     * @param token the token to use for the authorization
+     */
     public HttpRequest(String url, String method, String token) {
         this.url = url;
         this.method = method;
         this.token = token;
     }
 
+    /**
+     * Do the request
+     * @return the response of the request
+     */
     @Override
     public String call() {
         String response;
@@ -58,6 +67,13 @@ public class HttpRequest implements Callable<String> {
         return response;
     }
 
+    /**
+     * Execute the request in a new thread
+     * @param url the url to call
+     * @param method the method to use (GET, POST, PUT, DELETE)
+     * @param token the token to use for the authorization
+     * @return the response of the request
+     */
     public static Future<String> execute(String url, String method, String token) {
         ExecutorService executor = Executors.newSingleThreadExecutor();
         Future<String> future = executor.submit(new HttpRequest(url, method, token));

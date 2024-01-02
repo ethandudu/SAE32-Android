@@ -18,6 +18,8 @@ public class Settings extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+
+        // set the values of the switches according to the settings
         SharedPreferences sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
 
         if (sharedPreferences.getBoolean("macResolution", false)){
@@ -29,12 +31,15 @@ public class Settings extends AppCompatActivity {
         if (sharedPreferences.getBoolean("darkMode", false)){
             darkSwitch.setChecked(true);
         }
+
+        // set the values of the text fields according to the settings
         EditText serverUrl = findViewById(R.id.serverUrl);
         serverUrl.setText(sharedPreferences.getString("serverUrl", ""));
 
         EditText token = findViewById(R.id.token);
         token.setText(sharedPreferences.getString("authorizedToken", ""));
 
+        // listen the changes on the dark mode switch and apply the changes immediately
         darkSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
@@ -54,12 +59,20 @@ public class Settings extends AppCompatActivity {
 
     }
 
+    /**
+     * Return to the previous activity
+     * @param view the view of the button
+     */
     public void returnToMainActivity(View view){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         super.finish();
     }
 
+    /**
+     * Save the settings
+     * @param view the view of the button
+     */
     public void saveSettings(View view){
         SharedPreferences sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();

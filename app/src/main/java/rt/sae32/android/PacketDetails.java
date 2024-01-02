@@ -22,24 +22,39 @@ public class PacketDetails extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_packetdetails);
-        getData();
-        TextView paquetName = findViewById(R.id.packet);
-        paquetName.setText(String.format("Paquet n°%s", getIntent().getStringExtra("idPacket")));
+
+        String response = getData(getIntent().getStringExtra("idTest"), getIntent().getStringExtra("idPacket"));
+        readResponse(response);
+
+        TextView packetName = findViewById(R.id.packet);
+        packetName.setText(String.format("Paquet n°%s", getIntent().getStringExtra("idPacket")));
+
         TextView editText = findViewById(R.id.editTextTextMultiLine);
         editText.setEnabled(false);
     }
 
+    /**
+     * Return to the previous activity
+     * @param view the view of the button
+     */
     public void returnToPreviousActivity(View view){
         super.finish();
     }
 
-    public void getData() {
+    /**
+     * Get the data from the API
+     * @param idTest the id of the test
+     * @param idPacket the id of the packet
+     * @return the response of the API
+     */
+    public String getData(String idTest, String idPacket) {
         //prepare the request
         String server = ServerUrl.getServerUrl(this);
         SharedPreferences sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
         String token = sharedPreferences.getString("authorizedToken", "");
-        String url = server + getString(R.string.packetsUrl) + "?fileid=" + getIntent().getStringExtra("idTest") + "&packetid=" + getIntent().getStringExtra("idPacket");
+        String url = server + getString(R.string.packetsUrl) + "?fileid=" + idTest + "&packetid=" + idPacket;
         Future<String> request = HttpRequest.execute(url,"GET", token);
         String response = "";
 
@@ -51,12 +66,16 @@ public class PacketDetails extends AppCompatActivity {
 
         if (response.startsWith("Error")) {
             Toast.makeText(this, response, Toast.LENGTH_SHORT).show();
-            return;
+            return null;
         }
 
-        readResponse(response);
+        return response;
     }
 
+    /**
+     * Read the response and set the text of the textviews
+     * @param response the response of the API
+     */
     private void readResponse(String response) {
         try {
             //read the json
@@ -141,15 +160,27 @@ public class PacketDetails extends AppCompatActivity {
     }
 
 
+    /**
+     * Check if the mac resolution is enabled in the settings
+     * @return true if the mac resolution is enabled, false otherwise
+     */
     private boolean checkSettings(){
         SharedPreferences sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
         return sharedPreferences.getBoolean("macResolution", false);
     }
+
+    /**
+     * Resolve the mac addresses to get the vendor via the API
+     * @param macsrc the source mac address
+     * @param macdst the destination mac address
+     * @return a map with the vendors of the source and destination mac addresses. If the vendor is unknown, the value is "Unknown"
+     */
     private Map<String, String> macVendorResolution(String macsrc, String macdst){
         macsrc = macsrc.toUpperCase();
         macdst = macdst.toUpperCase();
         String vendorsrc = "Unknown";
         String vendordst = "Unknown";
+
         //prepare the request
         String server = ServerUrl.getServerUrl(this);
         String url = server + getString(R.string.macVendorUrl) + "?macsrc=" + macsrc + "&macdst=" + macdst;
@@ -157,12 +188,15 @@ public class PacketDetails extends AppCompatActivity {
         String token = sharedPreferences.getString("authorizedToken", "");
         Future<String> request = HttpRequest.execute(url,"GET", token);
         String response;
+
         try {
             response = request.get();
+
             if (response.startsWith("Error")) {
                 Toast.makeText(this, response, Toast.LENGTH_SHORT).show();
                 return Map.of("vendorsrc", vendorsrc, "vendordst", vendordst);
             }
+
             JSONObject json = new JSONObject(response);
             JSONObject object = json.getJSONObject("data");
             vendorsrc = object.getString("vendorsrc");
