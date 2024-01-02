@@ -91,24 +91,38 @@
         app:layout_constraintStart_toEndOf="@id/returnButton"
         app:layout_constraintTop_toTopOf="@id/header" />
 
-    <EditText
-
-        android:id="@+id/editTextTextMultiLine"
-        android:layout_width="345dp"
-        android:layout_height="296dp"
-        android:layout_marginTop="26dp"
-        android:layout_marginBottom="20dp"
-        android:clickable="false"
-        android:ems="10"
-        android:gravity="start|top"
-        android:hint="@null"
-        android:importantForAccessibility="no"
-        android:inputType="textMultiLine"
+    <ScrollView
+        android:layout_width="397dp"
+        android:layout_height="325dp"
+        android:layout_marginTop="1dp"
+        android:contentDescription="@string/empty"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ipDest"
-        android:importantForAutofill="no" />
+        app:layout_constraintTop_toBottomOf="@+id/ipDest">
+
+        <EditText
+
+            android:id="@+id/editTextTextMultiLine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:clickable="false"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="@null"
+            android:importantForAccessibility="no"
+            android:importantForAutofill="no"
+            android:inputType="textMultiLine"
+            android:isScrollContainer="true"
+            android:scrollbars="vertical"
+            android:textColor="@color/secondary_600"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ipDest" />
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
