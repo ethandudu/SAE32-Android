@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 
 import android.app.AlertDialog;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 
 import android.content.Intent;
@@ -193,12 +194,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setTheme(){
-        SharedPreferences sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
-        if (sharedPreferences.getBoolean("darkMode", false)){
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        } else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        // check if the device support Material You
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            SharedPreferences sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
+            if (sharedPreferences.getBoolean("darkMode", false)){
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            }
         }
+
     }
 
     private synchronized Boolean checkSettings() {

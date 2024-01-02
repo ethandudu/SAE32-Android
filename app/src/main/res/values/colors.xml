@@ -2,5 +2,10 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="main_500">#FF3F51B5</color>
+    <color name="main_50">#FFE8EAF6</color>
+    <color name="main_dark_800">#FF303F9F</color>
+    <color name="secondary_600">#FF757575</color>
+
 
 </resources>
