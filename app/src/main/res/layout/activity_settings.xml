@@ -20,11 +20,11 @@
 
     <EditText
         android:id="@+id/token"
-        android:layout_width="373dp"
+        android:layout_width="0dp"
         android:layout_height="48dp"
-        android:layout_marginStart="4dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="4dp"
+        android:layout_marginEnd="8dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/token_example"
@@ -97,11 +97,11 @@
 
     <EditText
         android:id="@+id/serverUrl"
-        android:layout_width="373dp"
+        android:layout_width="0dp"
         android:layout_height="48dp"
-        android:layout_marginStart="4dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="4dp"
+        android:layout_marginEnd="8dp"
         android:autofillHints="@string/serverUrlHint"
         android:ems="10"
         android:inputType="text|textUri"

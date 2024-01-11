@@ -92,18 +92,19 @@
         app:layout_constraintTop_toTopOf="@id/header" />
 
     <ScrollView
-        android:layout_width="397dp"
-        android:layout_height="325dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="4dp"
+        android:layout_marginBottom="8dp"
         android:contentDescription="@string/empty"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ipDest">
 
-        <EditText
+        <TextView
 
             android:id="@+id/editTextTextMultiLine"
             android:layout_width="match_parent"
@@ -116,10 +117,9 @@
             android:hint="@null"
             android:importantForAccessibility="no"
             android:importantForAutofill="no"
-            android:inputType="textMultiLine"
             android:isScrollContainer="true"
             android:scrollbars="vertical"
-            android:textColor="@color/secondary_600"
+            android:textColor="@color/main_dark_800"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
