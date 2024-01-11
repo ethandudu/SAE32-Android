@@ -9,9 +9,11 @@
 
     <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/macresolution"
-        android:layout_width="263dp"
+        android:layout_width="0dp"
         android:layout_height="48dp"
+        android:layout_marginStart="75dp"
         android:layout_marginTop="56dp"
+        android:layout_marginEnd="75dp"
         android:text="@string/macvendorresolution"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -22,9 +24,11 @@
 
     <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/darktheme"
-        android:layout_width="263dp"
+        android:layout_width="0dp"
         android:layout_height="48dp"
+        android:layout_marginStart="75dp"
         android:layout_marginTop="36dp"
+        android:layout_marginEnd="75dp"
         android:text="@string/theme_sombre"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -35,9 +39,11 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="87dp"
+        android:layout_width="0dp"
         android:layout_height="31dp"
+        android:layout_marginStart="140dp"
         android:layout_marginTop="3dp"
+        android:layout_marginEnd="140dp"
         android:text="@string/app_name"
         android:textAlignment="center"
         android:textSize="24sp"
@@ -49,9 +55,11 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="135dp"
+        android:layout_width="0dp"
         android:layout_height="28dp"
+        android:layout_marginStart="140dp"
         android:layout_marginTop="54dp"
+        android:layout_marginEnd="140dp"
         android:text="@string/parametres"
         android:textAlignment="center"
         android:textSize="20sp"
@@ -62,9 +70,11 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="128dp"
+        android:layout_width="0dp"
         android:layout_height="128dp"
+        android:layout_marginStart="135dp"
         android:layout_marginTop="32dp"
+        android:layout_marginEnd="135dp"
         android:contentDescription="@string/app_name"
         android:src="@drawable/sae32_logo"
         app:layout_constraintEnd_toEndOf="parent"
